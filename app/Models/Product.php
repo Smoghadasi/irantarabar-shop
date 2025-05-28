@@ -110,13 +110,13 @@ class Product extends Model
     {
         $keyword = request()->search;
         if (request()->has('search') && trim($keyword) != '') {
-            $query->where('name', 'LIKE', '%'. trim($keyword) .'%');
+            $query->where('name', 'LIKE', '%' . trim($keyword) . '%');
         }
 
         return $query;
     }
 
-    public function tags() : BelongsToMany
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'product_tag');
     }
@@ -153,7 +153,7 @@ class Product extends Model
 
     public function approvedComments()
     {
-        return $this->hasMany(Comment::class)->where('approved' , 1);
+        return $this->hasMany(Comment::class)->where('approved', 1);
     }
 
     public function owner(): BelongsTo
@@ -161,8 +161,8 @@ class Product extends Model
         return $this->belongsTo(User::class, 'owner_id');
     }
 
-    // public function checkUserWishlist($userId)
-    // {
-    //     return $this->hasMany(Wishlist::class)->where('user_id' , $userId)->exists();
-    // }
+    public function checkUserWishlist($userId)
+    {
+        return $this->hasMany(Wishlist::class)->where('user_id', $userId)->exists();
+    }
 }

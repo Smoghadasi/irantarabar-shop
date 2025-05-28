@@ -322,7 +322,8 @@
                                     </a>
                                     <ul class="dropdown-menu flex-column" style="min-width: 250px"
                                         data-popper-placement="bottom-start">
-                                        <li class="w-100"><a href="{{ route('home.panel.dashboard') }}" class="dropdown-item fs-6"><i
+                                        <li class="w-100"><a href="{{ route('home.panel.dashboard') }}"
+                                                class="dropdown-item fs-6"><i
                                                     class="bi bi-house-door me-2"></i>پروفایل</a>
                                         </li>
                                         <li class="w-100"><a href="" class="dropdown-item fs-6 py-2"><i
@@ -392,7 +393,8 @@
                                 <ul class="main-menu mega-container">
                                     @foreach (App\helper\ShowModels::categoryHeaderMegaMenu() as $category)
                                         <li class="">
-                                            <a href="#">
+                                            <a
+                                                href="{{ route('home.categories.show', ['category' => $category->slug]) }}">
                                                 <i class="bi bi-phone"></i> {{ $category->name }}
                                             </a>
 
@@ -403,15 +405,17 @@
                                                     @foreach ($category->children as $subCategory)
                                                         @if ($subCategory->children->count())
                                                             <li><a class="title my-flex-baseline"
-                                                                    href="#">{{ $subCategory->name }}</a>
+                                                                    href="{{ route('home.categories.show', ['category' => $subCategory->slug]) }}">{{ $subCategory->name }}</a>
                                                             </li>
 
                                                             @foreach ($subCategory->children as $thirdCategory)
-                                                                <li><a href="#">{{ $thirdCategory->name }}</a>
+                                                                <li><a
+                                                                        href="{{ route('home.categories.show', ['category' => $thirdCategory->slug]) }}">{{ $thirdCategory->name }}</a>
                                                                 </li>
                                                             @endforeach
                                                         @else
-                                                            <li><a href="#">{{ $subCategory->name }}</a>
+                                                            <li><a
+                                                                    href="{{ route('home.categories.show', ['category' => $subCategory->slug]) }}">{{ $subCategory->name }}</a>
                                                             </li>
                                                         @endif
                                                     @endforeach
@@ -474,9 +478,8 @@
     </div>
     <div class="offcanvas-body">
         @if (\Cart::isEmpty())
-        <img src="{{ asset('assets/img/empty-cart.svg') }}" width="500" alt="">
-        <p class="text-center mt-4 f-800">سبد خرید شما خالی است!</p>
-
+            <img src="{{ asset('assets/img/empty-cart.svg') }}" width="500" alt="">
+            <p class="text-center mt-4 f-800">سبد خرید شما خالی است!</p>
         @else
             <ul class="navbar-nav cart-canvas-parent">
                 @foreach (\Cart::getContent() as $item)
@@ -484,7 +487,8 @@
                         <div class="cart-canvas">
                             <div class="row align-items-center">
                                 <div class="col-4 ps-0">
-                                    <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->associatedModel->primary_image) }}" alt="">
+                                    <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->associatedModel->primary_image) }}"
+                                        alt="">
                                 </div>
                                 <div class="col-8">
                                     <h3 class="text-overflow-2 font-16">
@@ -493,7 +497,8 @@
                                     <div
                                         class="product-box-suggest-price my-2  d-flex align-items-center justify-content-between">
                                         {{-- <del class="font-16">5,000,000</del> --}}
-                                        <ins class="font-25">{{ number_format($item->price) }} <span>تومان</span></ins>
+                                        <ins class="font-25">{{ number_format($item->price) }}
+                                            <span>تومان</span></ins>
                                     </div>
                                     <div class="cart-canvas-foot d-flex align-items-center justify-content-between">
                                         <div class="cart-canvas-count">
@@ -501,7 +506,8 @@
                                             <span class="fw-bold">{{ $item->quantity }}</span>
                                         </div>
                                         <div class="cart-canvas-delete">
-                                            <a href="{{ route('home.cart.remove' , ['rowId' => $item->id]) }}" class="btn"><i class="bi bi-x"></i></a>
+                                            <a href="{{ route('home.cart.remove', ['rowId' => $item->id]) }}"
+                                                class="btn"><i class="bi bi-x"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -522,8 +528,9 @@
                     </div>
                     <div class="col-6">
                         <div class="cart-canvas-foot-link text-end">
-                            <a href="{{ route('home.cart.index') }}" class="btn border-0 main-color-green text-white"><i
-                                    class="bi bi-arrow-left me-1"></i> تکمیل خرید</a>
+                            <a href="{{ route('home.cart.index') }}"
+                                class="btn border-0 main-color-green text-white"><i class="bi bi-arrow-left me-1"></i>
+                                تکمیل خرید</a>
                         </div>
                     </div>
                 </div>
