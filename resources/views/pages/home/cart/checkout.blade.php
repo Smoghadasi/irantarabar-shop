@@ -56,7 +56,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="row gy-3">
+                            <div class="row gy-3">
                                 <div class="col-md-6">
                                     <div class="alert bg-white shadow-box rounded-4 pointer py-3 mb-3"
                                         data-bs-toggle="modal" data-bs-target="#discountModal">
@@ -65,15 +65,15 @@
                                         کنید
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="alert bg-white shadow-box rounded-4 pointer py-3 mb-3"
                                         data-bs-toggle="modal" data-bs-target="#giftModal">
                                         <i class="bi bi-gift main-color-one-color me-2 font-25"></i>
                                         کارت هدیه دارید برای نوشتن کد اینجا کلیک
                                         کنید
                                     </div>
-                                </div>
-                            </div> --}}
+                                </div> --}}
+                            </div>
 
                             <div class="alert bg-white shadow-box">
                                 <h5 class="font-18 border-bottom pb-3">
