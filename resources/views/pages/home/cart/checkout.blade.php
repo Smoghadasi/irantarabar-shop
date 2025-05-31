@@ -1,4 +1,14 @@
 @extends('layouts.app')
+
+@section('script')
+    <script>
+        $('#address-input').val($('#address-select').val());
+
+        $('#address-select').change(function() {
+            $('#address-input').val($(this).val());
+        });
+    </script>
+@endsection
 @section('content')
     <!-- start main content -->
 
@@ -56,7 +66,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="row gy-3">
+                            <div class="row gy-3">
                                 <div class="col-md-6">
                                     <div class="alert bg-white shadow-box rounded-4 pointer py-3 mb-3"
                                         data-bs-toggle="modal" data-bs-target="#discountModal">
@@ -65,15 +75,48 @@
                                         کنید
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {{-- <div class="col-md-6">
                                     <div class="alert bg-white shadow-box rounded-4 pointer py-3 mb-3"
                                         data-bs-toggle="modal" data-bs-target="#giftModal">
                                         <i class="bi bi-gift main-color-one-color me-2 font-25"></i>
                                         کارت هدیه دارید برای نوشتن کد اینجا کلیک
                                         کنید
                                     </div>
+                                </div> --}}
+                            </div>
+                            <!-- modal discount -->
+
+                            <div class="discount-modal">
+                                <div class="modal fade" id="discountModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-md modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h6 class="modal-title" id="exampleModalLabel">کد تخفیف</h6>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h4 class="font-16 mb-3">
+                                                    اگر شما کد تخفیف دارید ، برای ثبت آن از طریق زیر اقدام کنید.
+                                                </h4>
+                                                <form action="{{ route('home.coupons.check') }}" method="POST">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label for="discount" class="form-label">کد تخفیف:</label>
+                                                        <input type="text" name="code" class="form-control"
+                                                            placeholder="کد تخفیف" id="discount">
+                                                    </div>
+                                                    <button class="btn main-color-two-bg border-0 rounded-0">ثبت کد
+                                                        تخفیف</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div> --}}
+                            </div>
+
+                            <!--end modal discount-->
 
                             <div class="alert bg-white shadow-box">
                                 <h5 class="font-18 border-bottom pb-3">
@@ -105,28 +148,18 @@
 
                             <div class="alert bg-white shadow-box">
                                 <h5 class="font-18 border-bottom pb-3">
-                                    جزئیات سفارش
+                                    انتخاب آدرس تحویل سفارش
                                 </h5>
 
                                 @if ($addresses->isNotEmpty())
-                                    @foreach ($addresses as $address)
-                                        <div class="detail-order mt-3">
-                                            <div class="detail-order-item d-flex align-items-center">
-                                                <h6><i class="bi bi-pin-map-fill me-1"></i> آدرس تحویل:</h6>
-                                                <span class="ms-2 text-muted">{{ $address->full_address }}</span>
-                                            </div>
-                                            <div class="detail-order-item mt-3 d-flex align-items-center">
-                                                <h6><i class="bi bi-person-fill me-1"></i>تحویل گیرنده:</h6>
-                                                <span class="ms-2 text-muted">{{ $address->recipient_name }}</span>
-                                            </div>
-                                            <div class="detail-order-item mt-3 d-flex align-items-center">
-                                                <h6><i class="bi bi-telephone-fill me-1"></i>شماره تماس:</h6>
-                                                <span class="ms-2 text-muted">{{ $address->phone }}</span>
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                    <select class="form-control form-select" id="address-select">
+                                        @foreach ($addresses as $address)
+                                            <option value="{{ $address->id }}"> {{ $address->title }} </option>
+                                        @endforeach
+                                    </select>
                                 @else
-                                    <a href="#" class="btn btn-primary my-2"> ایجاد آدرس جدید </a>
+                                    <a href="{{ route('home.panel.address.index') }}" class="btn btn-primary my-2"> ایجاد
+                                        آدرس جدید </a>
                                 @endif
 
 
@@ -136,7 +169,8 @@
                                             <div class="cart-canvas border rounded-3 p-3">
                                                 <div class="row align-items-center">
                                                     <div class="col-4 ps-0">
-                                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->associatedModel->primary_image) }}" width="200" alt="">
+                                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->associatedModel->primary_image) }}"
+                                                            width="200" alt="">
                                                     </div>
                                                     <div class="col-8">
                                                         <h3 class="text-overflow-2 font-16">
@@ -149,7 +183,8 @@
                                                         </p>
                                                         <div
                                                             class="product-box-suggest-price my-2  d-flex align-items-center justify-content-between">
-                                                            <ins class="font-25 ms-0">{{ number_format($item->price) }} <span>تومان</span></ins>
+                                                            <ins class="font-25 ms-0">{{ number_format($item->price) }}
+                                                                <span>تومان</span></ins>
                                                         </div>
                                                         <div
                                                             class="cart-canvas-foot d-flex align-items-center justify-content-between">
@@ -192,25 +227,37 @@
                             </div>
                             <div class="cart__order-total-row">
                                 <label class="order-total-row__col-right">جمع مبلغ کالاها:</label>
-                                <div class="order-total-row__col-left"><span>{{ number_format( \Cart::getTotal() + cartTotalSaleAmount() ) }}</span><span
-                                        class="font-12 ms-1">تومان</span></div>
+                                <div class="order-total-row__col-left">
+                                    <span>{{ number_format(\Cart::getTotal() + cartTotalSaleAmount()) }}</span><span
+                                        class="font-12 ms-1">تومان</span>
+                                </div>
                             </div>
+                            @if (session()->has('coupon'))
+                                <div class="cart__order-total-row">
+                                    <label class="order-total-row__col-right">مبلغ کد تخفیف:</label>
+                                    <div class="order-total-row__col-left">
+                                        <span>{{ number_format(session()->get('coupon.amount')) }}</span><span
+                                            class="font-12 ms-1">تومان</span>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="cart__order-total-row cart__order-total-row--benefit">
                                 <div class="order-total-row__col-right">سود شما از خرید :</div>
                                 <div class="order-total-row__col-left">
-                                    <span>{{ number_format( cartTotalSaleAmount() ) }}</span><span class="font-12 ms-1">تومان</span>
+                                    <span>{{ number_format(cartTotalSaleAmount()) }}</span><span
+                                        class="font-12 ms-1">تومان</span>
                                 </div>
                             </div>
                             <div class="cart__order-total-row cart__order-total-row--benefit">
                                 <div class="order-total-row__col-right">هزینه ارسال :</div>
                                 <div class="order-total-row__col-left">
-                                    @if(cartTotalDeliveryAmount() == 0)
+                                    @if (cartTotalDeliveryAmount() == 0)
                                         <span style="color: red">
                                             رایگان
                                         </span>
                                     @else
                                         <span>
-                                            {{ number_format( cartTotalDeliveryAmount() ) }}
+                                            {{ number_format(cartTotalDeliveryAmount()) }}
 
                                         </span>
                                     @endif
@@ -224,12 +271,20 @@
                                 <div class="cart__order-total-row cart__order-total-row--total"><label
                                         class="order-total-row__col-right">جمع سبد خرید :</label>
                                     <div class="order-total-row__col-left">
-                                        <span>{{ number_format( cartTotalAmount() ) }}</span><span class="font-12 ms-1">تومان</span>
+                                        <span>{{ number_format(cartTotalAmount()) }}</span><span
+                                            class="font-12 ms-1">تومان</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a href="" class="btn w-100 d-block main-color-green py-3">تکمیل فرایند خرید</a>
+                        <form action="{{ route('home.payment') }}" method="POST">
+                            @csrf
+                            <input id="zarinpal" class="input-radio" type="hidden" value="zarinpal" checked="checked"
+                                name="payment_method">
+                            <input type="hidden" id="address-input" name="address_id">
+                            <button type="submit" class="btn w-100 d-block main-color-green py-3">تکمیل فرایند
+                                خرید</button>
+                        </form>
                     </div>
                 </div>
             </div>

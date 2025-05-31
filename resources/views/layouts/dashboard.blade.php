@@ -102,6 +102,7 @@
 
     <script src="{{ asset('assets-sneat/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
     <!-- Vendors JS -->
     {{-- <script src="{{ asset('assets-sneat/vendor/libs/apex-charts/apexcharts.js') }}"></script> --}}

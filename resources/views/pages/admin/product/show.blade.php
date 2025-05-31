@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label>تاریخ ایجاد</label>
-                    <input class="form-control" type="text" value="{{ verta($product->created_at) }}" disabled>
+                    <input class="form-control" type="text" value="{{ $product->created_at }}" disabled>
                 </div>
                 <div class="form-group col-md-12">
                     <label>توضیحات</label>
@@ -124,14 +124,14 @@
                                     <div class="form-group col-md-3">
                                         <label> تاریخ شروع حراجی </label>
                                         <input type="text"
-                                            value="{{ $variation->date_on_sale_from == null ? null : verta($variation->date_on_sale_from) }}"
+                                            value="{{ $variation->date_on_sale_from == null ? null : $variation->date_on_sale_from }}"
                                             disabled class="form-control">
                                     </div>
 
                                     <div class="form-group col-md-3">
                                         <label> تاریخ پایان حراجی </label>
                                         <input type="text"
-                                            value="{{ $variation->date_on_sale_to == null ? null : verta($variation->date_on_sale_to) }}"
+                                            value="{{ $variation->date_on_sale_to == null ? null : $variation->date_on_sale_to }}"
                                             disabled class="form-control">
                                     </div>
                                 </div>

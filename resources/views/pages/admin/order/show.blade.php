@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label>تاریخ ایجاد</label>
-                    <input class="form-control" type="text" value="{{ verta($order->created_at) }}" disabled>
+                    <input class="form-control" type="text" value="{{ $order->created_at }}" disabled>
                 </div>
 
                 <div class="form-group col-md-12">
@@ -82,14 +82,14 @@
                                     <tr>
                                         <td class="product-thumbnail">
                                             <a
-                                                href="{{ route('admin.products.show', ['product' => $item->product->id]) }}">
+                                                href="{{ route('admin.product.show', ['product' => $item->product->id]) }}">
                                                 <img width="70"
                                                     src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $item->product->primary_image) }}"
                                                     alt="">
                                             </a>
                                         </td>
                                         <td class="product-name"><a
-                                                href="{{ route('admin.products.show', ['product' => $item->product->id]) }}">
+                                                href="{{ route('admin.product.show', ['product' => $item->product->id]) }}">
                                                 {{ $item->product->name }} </a></td>
                                         <td class="product-price-cart"><span class="amount">
                                                 {{ number_format($item->price) }}
@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('admin.orders.index') }}" class="btn btn-dark mt-5">بازگشت</a>
+            <a href="{{ route('admin.order.index') }}" class="btn btn-dark mt-5">بازگشت</a>
 
         </div>
 

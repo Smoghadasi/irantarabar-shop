@@ -105,6 +105,8 @@
 <script src="{{ asset('assets/js/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+{{-- @include('sweetalert::alert') --}}
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 @yield('script')
 </body>

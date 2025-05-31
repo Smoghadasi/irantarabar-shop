@@ -18,6 +18,6 @@ class CategoryController extends Controller
         $products = $category->products()->filter()->search()->paginate(9);
         // dd($products);
 
-        // return view('home.categories.show', compact('category', 'attributes', 'variation', 'products'));
+        return view('pages.home.categories.show', compact('category', 'attributes', 'variation', 'products'));
     }
 }

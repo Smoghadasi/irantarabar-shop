@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Home\PaymentController;
 use App\Http\Controllers\Home\ProfileAddressController;
 use App\Http\Controllers\Home\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,8 +20,10 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('address', ProfileAddressController::class);
         Route::get('/get-cities/{province_id}', [ProfileAddressController::class, 'getCities']);
-
     });
+    Route::post('/payment', [PaymentController::class, 'payment'])->name('home.payment');
+    Route::get('/payment-verify/{gatewayName}', [PaymentController::class, 'paymentVerify'])->name('home.payment_verify');
+
 
     // Route::get('verify-email', EmailVerificationPromptController::class)
     //     ->name('verification.notice');

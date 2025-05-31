@@ -40,6 +40,7 @@ class HomeRoute implements RouteInterface
         // Route::get('/clear-cart', [CartController::class, 'clear'])->name('home.cart.clear');
         // Route::post('/check-coupon', [CartController::class, 'checkCoupon'])->name('home.coupons.check');
         Route::get('/checkout', [CartController::class, 'checkout'])->name('home.orders.checkout');
+        Route::post('/check-coupon', [CartController::class, 'checkCoupon'])->name('home.coupons.check');
 
         Route::get('/add-to-wishlist/{product}', [WishListController::class, 'add'])->name('home.wishlist.add');
         Route::get('/remove-from-wishlist/{product}', [WishlistController::class, 'remove'])->name('home.wishlist.remove');

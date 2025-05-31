@@ -248,8 +248,8 @@
                             </div>
                         </div>
                         <div class="top-header-logo">
-                            <a href="index.html">
-                                <img src="{{ asset('assets/img/logo.png') }}" width="200" alt="">
+                            <a href="/">
+                                <img src="{{ asset('assets/img/iran.png') }}" width="200" alt="">
                             </a>
                         </div>
                     </div>

@@ -34,10 +34,10 @@
                                                                 تومان
                                                             </del>
                                                         @else
-                                                            <span class="new">
+                                                            <ins class="new">
                                                                 {{ number_format($product->price_check->price) }}
                                                                 تومان
-                                                            </span>
+                                                            </ins>
                                                         @endif
                                                     @else
                                                         <div class="not-in-stock">
@@ -198,10 +198,10 @@
                                                     تومان
                                                 </del>
                                             @else
-                                                <span class="new">
+                                                <ins class="new">
                                                     {{ number_format($product->price_check->price) }}
                                                     تومان
-                                                </span>
+                                                </ins>
                                             @endif
                                         @else
                                             <div class="not-in-stock">
@@ -346,10 +346,10 @@
                                                         تومان
                                                     </del>
                                                 @else
-                                                    <span class="new">
+                                                    <ins class="new">
                                                         {{ number_format($product->price_check->price) }}
                                                         تومان
-                                                    </span>
+                                                    </ins>
                                                 @endif
                                             @else
                                                 <div class="not-in-stock">

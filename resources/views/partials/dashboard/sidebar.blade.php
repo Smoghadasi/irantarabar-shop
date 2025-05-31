@@ -118,7 +118,7 @@
                     </a>
                 </li>
                 <li class="menu-item ">
-                    <a href="#" class="menu-link">
+                    <a href="{{ route('admin.coupons.index') }}" class="menu-link">
                         <div data-i18n="Input groups">کد تخفیف</div>
                     </a>
                 </li>

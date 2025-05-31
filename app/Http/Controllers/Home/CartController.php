@@ -51,11 +51,32 @@ class CartController extends Controller
         return redirect()->back();
     }
 
+    public function checkCoupon(Request $request)
+    {
+        $request->validate([
+            'code' => 'required'
+        ]);
+
+        if (!auth()->check()) {
+            // alert()->error('برای استفاده از کد تخفیف نیاز هست ابتدا وارد وب سایت شوید', 'دقت کنید');
+            return redirect()->back();
+        }
+
+        $result = checkCoupon($request->code);
+
+        // if (array_key_exists('error', $result)) {
+        //     alert()->error($result['error'], 'دقت کنید');
+        // } else {
+        //     alert()->success($result['success'], 'باتشکر');
+        // }
+        return redirect()->back();
+    }
+
     public function checkout()
     {
         if (\Cart::isEmpty()) {
             // alert()->warning('سبد خرید شما خالی میباشد', 'دقت کنید');
-            return redirect()->route('home.index');
+            return redirect()->route('home');
         }
 
         $addresses = UserAddress::where('user_id', auth()->id())->get();
