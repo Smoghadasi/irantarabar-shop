@@ -225,10 +225,30 @@
                                                             class="bi bi-basket"></i></a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a href=""
-                                                        class="nav-item product-box-hover-item product-box-hover-item-btn"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a>
+                                                    @auth
+                                                        @if ($product->checkUserWishlist(auth()->id()))
+                                                            <a href="{{ route('home.wishlist.remove', ['product' => $product->id]) }}"
+                                                                class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i>
+                                                            </a>
+                                                        @else
+                                                            <a
+                                                                href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
+                                                                    class="sli sli-heart"></i><span
+                                                                    class="ht-product-action-tooltip">
+                                                                    افزودن به علاقه مندی ها
+                                                                </span>
+                                                            </a>
+                                                        @endif
+                                                    @else
+                                                        <a href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"
+                                                            class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i>
+                                                        </a>
+                                                    @endauth
+
                                                 </li>
                                             </ul>
                                         </nav>
@@ -373,11 +393,30 @@
                                                                 class="bi bi-basket"></i></a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href=""
-                                                            class="nav-item product-box-hover-item product-box-hover-item-btn"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="افزودن به علاقه ها"><i
-                                                                class="bi bi-heart"></i></a>
+                                                        @auth
+                                                            @if ($product->checkUserWishlist(auth()->id()))
+                                                                <a href="{{ route('home.wishlist.remove', ['product' => $product->id]) }}"
+                                                                    class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                    data-bs-title="افزودن به علاقه ها"><i
+                                                                        class="bi bi-heart"></i>
+                                                                </a>
+                                                            @else
+                                                                <a
+                                                                    href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"><i
+                                                                        class="sli sli-heart"></i><span
+                                                                        class="ht-product-action-tooltip">
+                                                                        افزودن به علاقه مندی ها
+                                                                    </span>
+                                                                </a>
+                                                            @endif
+                                                        @else
+                                                            <a href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"
+                                                                class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i>
+                                                            </a>
+                                                        @endauth
                                                     </li>
                                                 </ul>
                                             </nav>
