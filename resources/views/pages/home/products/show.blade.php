@@ -204,7 +204,7 @@
                                                 </div>
                                                 <div
                                                     class="product-meta-price product-price d-flex justify-content-between align-items-center">
-                                                    <div class="product-details-price variation-price">
+                                                    <div class="product-box-suggest-price d-flex align-items-center justify-content-between">
                                                         @if ($product->quantity_check)
                                                             @if ($product->sale_check)
                                                                 <h6 class="title-font new-price">
@@ -394,90 +394,4 @@
 
     <!-- end product desc -->
 
-    <!-- start product slider -->
-
-    <div class="product-slider py-30 site-slider">
-        <div class="container-fluid">
-
-            <div class="section-title">
-                <div class="section-title-title">
-                    <h2 class="title-font h1">محصولات <span class="main-color-two-color">مشابه</span>
-                    </h2>
-                    <div class="Dottedsquare"></div>
-                </div>
-            </div>
-
-            <div class="swiper pro-slider">
-                <div class="swiper-wrapper align-items-center">
-                    <div class="swiper-slide">
-                        <div class="product-box">
-                            <div class="product-box-image">
-
-                                <img src="{{ asset('assets/img/product/product-image1.jpg') }}" loading="lazy"
-                                    alt="" class="img-fluid one-image">
-                                <img src="{{ asset('assets/img/product/product-image2.jpg') }}" loading="lazy"
-                                    alt="" class="img-fluid two-image">
-
-                                <div class="color-box">
-                                    <div class="color-box-item" data-hint="نام رنگ مورد نظر" data-toggle="tooltip">
-                                        <span class="color hint--top" style="background-color: #487eb0;"></span>
-                                    </div>
-                                    <div class="color-box-item" data-hint="نام رنگ مورد نظر" data-toggle="tooltip">
-                                        <span class="color hint--top" style="background-color: #353b48;"></span>
-                                    </div>
-                                    <div class="color-box-item" data-hint="نام رنگ مورد نظر" data-toggle="tooltip">
-                                        <span class="color hint--top" style="background-color: #7f8fa6;"></span>
-                                    </div>
-                                </div>
-                                <div class="product-box-price-discount">
-                                    <span class="d-block badge main-color-two-bg text-white font-14">25%</span>
-                                </div>
-                                <span class="product-box-image-overlay"></span>
-                            </div>
-                            <div class="product-box-title">
-                                <a href="">
-                                    <h5 class="text-overflow-2">ساعت هوشمند شیائومی مدل Redmi Watch 2 Lite طرح بند
-                                        سلیکونی
-                                    </h5>
-                                </a>
-                            </div>
-                            <div class="product-box-suggest-price d-flex align-items-center justify-content-between">
-                                <del class="font-16">5,000,000</del>
-                                <ins class="font-25">2,500,000 <span>تومان</span></ins>
-                            </div>
-                            <div class="product-box-hover-action">
-
-                                <nav class="navbar navbar-expand justify-content-center">
-                                    <ul class="navbar-nav align-items-center">
-                                        <li class="nav-item">
-                                            <a href="" class="nav-item product-box-hover-item me-3">مشاهده
-                                                محصول</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href=""
-                                                class="nav-item product-box-hover-item product-box-hover-item-btn me-1"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href=""
-                                                class="nav-item product-box-hover-item product-box-hover-item-btn"
-                                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                                data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a>
-                                        </li>
-                                    </ul>
-                                </nav>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- end product slider -->
 @endsection

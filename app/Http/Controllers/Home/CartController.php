@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\ProvinceCity;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use Cart;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class CartController extends Controller
 {
     public function index()
@@ -27,7 +30,7 @@ class CartController extends Controller
         $productVariation = ProductVariation::findOrFail(json_decode($request->variation)->id);
 
         if ($request->qtybutton > $productVariation->quantity) {
-            // alert()->error('تعداد وارد شده از محصول درست نمی باشد', 'دقت کنید');
+            Alert::alert('تعداد وارد شده از محصول درست نمی باشد', 'دقت کنید');
             return redirect()->back();
         }
 
@@ -43,7 +46,7 @@ class CartController extends Controller
                 'associatedModel' => $product
             ));
         } else {
-            // alert()->warning('محصول مورد نظر به سبد خرید شما اضافه شده است', 'دقت کنید');
+            Alert::alert('محصول مورد نظر به سبد خرید شما اضافه شده است', 'دقت کنید');
             return redirect()->back();
         }
 
@@ -58,38 +61,45 @@ class CartController extends Controller
         ]);
 
         if (!auth()->check()) {
-            // alert()->error('برای استفاده از کد تخفیف نیاز هست ابتدا وارد وب سایت شوید', 'دقت کنید');
+            Alert::alert('برای استفاده از کد تخفیف نیاز هست ابتدا وارد وب سایت شوید', 'دقت کنید');
             return redirect()->back();
         }
 
         $result = checkCoupon($request->code);
 
-        // if (array_key_exists('error', $result)) {
-        //     alert()->error($result['error'], 'دقت کنید');
-        // } else {
-        //     alert()->success($result['success'], 'باتشکر');
-        // }
+        if (array_key_exists('error', $result)) {
+            Alert::alert($result['error'], 'دقت کنید');
+        } else {
+            Alert::success($result['success'], 'باتشکر');
+        }
         return redirect()->back();
     }
 
     public function checkout()
     {
         if (\Cart::isEmpty()) {
-            // alert()->warning('سبد خرید شما خالی میباشد', 'دقت کنید');
+            Alert::alert('سبد خرید شما خالی میباشد', 'دقت کنید');
             return redirect()->route('home');
         }
 
         $addresses = UserAddress::where('user_id', auth()->id())->get();
         $provinces = ProvinceCity::all();
 
-        return view('pages.home.cart.checkout', compact('addresses' , 'provinces'));
+        return view('pages.home.cart.checkout', compact('addresses', 'provinces'));
     }
     public function remove($rowId)
     {
         Cart::remove($rowId);
 
-        // alert()->success('محصول مورد نظر از سبد خرید شما حذف شد', 'باتشکر');
+        Alert::success('محصول مورد نظر از سبد خرید شما حذف شد', 'باتشکر');
         return redirect()->back();
+    }
+
+    public function usersProfileIndex()
+    {
+        $orders = Order::where('user_id', auth()->id())->get();
+        return $orders;
+        return view('pages.home.profile.users_profile', compact('orders'));
     }
 
     public function update(Request $request)
@@ -103,7 +113,7 @@ class CartController extends Controller
             $item = Cart::get($rowId);
 
             if ($quantity > $item->attributes->quantity) {
-                alert()->error('تعداد وارد شده از محصول درست نمی باشد', 'دقت کنید');
+                Alert::alert('تعداد وارد شده از محصول درست نمی باشد', 'دقت کنید');
                 return redirect()->back();
             }
 
@@ -115,7 +125,7 @@ class CartController extends Controller
             ));
         }
 
-        // alert()->success('سبد خرید شما ویرایش شد', 'باتشکر');
+        Alert::success('سبد خرید شما ویرایش شد', 'باتشکر');
         return redirect()->back();
     }
 }

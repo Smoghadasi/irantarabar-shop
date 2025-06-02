@@ -1,12 +1,8 @@
 @extends('layouts.app')
-
-@section('title')
-    صفحه ای فروشگاه
-@endsection
-
 @section('script')
     <script>
         function filter() {
+            console.log('log');
 
             let attributes = @json($attributes);
             attributes.map(attribute => {
@@ -56,464 +52,386 @@
             $(location).attr('href', url);
         });
 
-        $('.variation-select').on('change' , function(){
+        $('.variation-select').on('change', function() {
             let variation = JSON.parse(this.value);
             let variationPriceDiv = $('.variation-price');
             variationPriceDiv.empty();
 
-            if(variation.is_sale){
-                let spanSale = $('<span />' , {
-                    class : 'new',
-                    text : toPersianNum(number_format(variation.sale_price)) + ' تومان'
+            if (variation.is_sale) {
+                let spanSale = $('<span />', {
+                    class: 'new',
+                    text: number_format(variation.sale_price) + ' تومان'
                 });
-                let spanPrice = $('<span />' , {
-                    class : 'old',
-                    text : toPersianNum(number_format(variation.price)) + ' تومان'
+                let spanPrice = $('<span />', {
+                    class: 'old',
+                    text: number_format(variation.price) + ' تومان'
                 });
 
                 variationPriceDiv.append(spanSale);
                 variationPriceDiv.append(spanPrice);
-            }else{
-                let spanPrice = $('<span />' , {
-                    class : 'new',
-                    text : toPersianNum(number_format(variation.price)) + ' تومان'
+            } else {
+                let spanPrice = $('<span />', {
+                    class: 'new',
+                    text: toPersianNum(number_format(variation.price)) + ' تومان'
                 });
                 variationPriceDiv.append(spanPrice);
             }
 
-            $('.quantity-input').attr('data-max' , variation.quantity);
+            $('.quantity-input').attr('data-max', variation.quantity);
             $('.quantity-input').val(1);
 
         });
 
-        $('#pagination li a').map(function(){
+        $('#pagination li a').map(function() {
             let decodeUrl = decodeURIComponent($(this).attr('href'));
-            if( $(this).attr('href') !== undefined ){
-                $(this).attr('href' , decodeUrl);
+            if ($(this).attr('href') !== undefined) {
+                $(this).attr('href', decodeUrl);
             }
         });
-
     </script>
 @endsection
-
 @section('content')
+    <!-- start main content -->
 
-    <div class="breadcrumb-area pt-35 pb-35 bg-gray" style="direction: rtl;">
-        <div class="container">
-            <div class="breadcrumb-content text-center">
-                <ul>
-                    <li>
-                        <a href="{{ route('home') }}">صفحه ای اصلی</a>
-                    </li>
-                    <li class="active">فروشگاه </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <div class="content">
+        <div class="container-fluid">
+
+            <!-- start filter in mobile -->
+            <div class="custom-filter d-lg-none d-block">
+                <button class="btn btn-filter-float border-0 main-color-two-bg shadow-box px-3 rounded-3 position-fixed"
+                    style="z-index: 999;bottom:96px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                    aria-controls="offcanvasRight">
+                    <i class="bi bi-funnel font-20 fw-bold text-white"></i>
+                    <span class="d-block font-14 text-white">فیلتر</span>
+                </button>
+
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasRight"
+                    aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasRightLabel1">فیلتر ها</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="item-boxs position-sticky top-0">
 
 
-    <div class="shop-area pt-95 pb-100">
-        <div class="container">
-            <div class="row flex-row-reverse text-right">
-
-                <!-- sidebar -->
-                <div class="col-lg-3 order-2 order-sm-2 order-md-1">
-                    <div class="sidebar-style mr-30">
-                        <div class="sidebar-widget">
-                            <h4 class="pro-sidebar-title">جستجو </h4>
-                            <div class="pro-sidebar-search mb-50 mt-25">
-                                <div class="pro-sidebar-search-form">
-                                    <input id="search-input" type="text" placeholder="... جستجو "
-                                        value="{{ request()->has('search') ? request()->search : '' }}">
-                                    <button type="button" onclick="filter()">
-                                        <i class="sli sli-magnifier"></i>
-                                    </button>
+                            <div class="item-box">
+                                <div class="title">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6 class="font-14">فیلتر براساس دسته</h6>
+                                        <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBoxColor1"
+                                            role="button" aria-expanded="false">
+                                            <i class="bi bi-chevron-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="desc collapse show" id="collapseItemBoxColor1">
+                                    <div class="filter-item-content">
+                                        <form action="">
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                                <div class="form-check">
+                                                    <label for="colorCheck1" class="form-check-label">موبایل <i
+                                                            class="bi bi-phone ms-1"></i></label>
+                                                    <input type="checkbox" name="" id="colorCheck1"
+                                                        class="form-check-input">
+                                                </div>
+                                                <div>
+                                                    <span class="fw-bold font-14">(27)</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                                <div class="form-check">
+                                                    <label for="colorCheck5" class="form-check-label">ایرپاد <i
+                                                            class="bi bi-earbuds ms-1"></i></label>
+                                                    <input type="checkbox" name="" id="colorCheck5"
+                                                        class="form-check-input">
+                                                </div>
+                                                <div>
+                                                    <span class="fw-bold font-14">(32)</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                                <div class="form-check">
+                                                    <label for="colorCheck4" class="form-check-label">تبلت <i
+                                                            class="bi bi-tablet ms-1"></i></label>
+                                                    <input type="checkbox" name="" id="colorCheck4"
+                                                        class="form-check-input">
+                                                </div>
+                                                <div>
+                                                    <span class="fw-bold font-14">(14)</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                                <div class="form-check">
+                                                    <label for="colorCheck3" class="form-check-label">هدست <i
+                                                            class="bi bi-headset ms-1"></i></label>
+                                                    <input type="checkbox" name="" id="colorCheck3"
+                                                        class="form-check-input">
+                                                </div>
+                                                <div>
+                                                    <span class="fw-bold font-14">(8)</span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="sidebar-widget">
-                            <h4 class="pro-sidebar-title"> دسته بندی </h4>
-                            <div class="sidebar-widget-list mt-30">
-                                <ul>
-                                    {{ $category->parent->name }}
-                                    @foreach ($category->parent->children as $childCategory)
-                                        <li>
-                                            <a href="{{ route('home.categories.show', ['category' => $childCategory->slug]) }}"
-                                                style="{{ $childCategory->slug == $category->slug ? 'color: #ff3535' : '' }}">
-                                                {{ $childCategory->name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
+            <!-- end filter mobile -->
 
-                                </ul>
-                            </div>
-                        </div>
-                        <hr>
-
+            <div class="row gy-3">
+                <div class="col-lg-3 d-lg-block d-none">
+                    <form id="filter-form">
                         @foreach ($attributes as $attribute)
-                            <div class="sidebar-widget mt-30">
-                                <h4 class="pro-sidebar-title"> {{ $attribute->name }} </h4>
-                                <div class="sidebar-widget-list mt-20">
-                                    <ul>
-                                        @foreach ($attribute->values as $value)
-                                            <li>
-                                                <div class="sidebar-widget-list-left">
-                                                    <input type="checkbox" class="attribute-{{ $attribute->id }}"
-                                                        value="{{ $value->value }}" onchange="filter()"
-                                                        {{ request()->has('attribute.' . $attribute->id) && in_array($value->value, explode('-', request()->attribute[$attribute->id])) ? 'checked' : '' }}>
+                            <input id="filter-attribute-{{ $attribute->id }}" type="hidden"
+                                name="attribute[{{ $attribute->id }}]">
+                        @endforeach
+                        <input id="filter-variation" type="hidden" name="variation">
+                        <input id="filter-sort-by" type="hidden" name="sortBy">
+                        <input id="filter-search" type="hidden" name="search">
+                    </form>
+                    <div class="item-boxs position-sticky top-0">
+
+                        <div class="item-box">
+                            @foreach ($attributes as $attribute)
+                                <div class="title">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6 class="font-14">{{ $attribute->name }}</h6>
+                                        <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBoxExist1"
+                                            role="button" aria-expanded="false">
+                                            <i class="bi bi-chevron-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="desc collapse show" id="collapseItemBoxExist1">
+                                    <div class="filter-item-content">
+                                        <form action="">
+                                            <div class="product-meta-color-items mt-4">
+                                                <ul>
+                                                    @foreach ($attribute->values as $value)
+                                                        <li>
+                                                            <div class="sidebar-widget-list-left">
+                                                                <input type="checkbox"
+                                                                    class="attribute-{{ $attribute->id }}"
+                                                                    value="{{ $value->value }}" onchange="filter()"
+                                                                    {{ request()->has('attribute.' . $attribute->id) && in_array($value->value, explode('-', request()->attribute[$attribute->id])) ? 'checked' : '' }}>
+                                                                <a href="#"> {{ $value->value }} </a>
+                                                                <span class="checkmark"></span>
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="item-box">
+                            <div class="title">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h6 class="font-14">{{ $variation->name }}</h6>
+                                    <a class="btn border-0" data-bs-toggle="collapse" href="#collapseItemBoxColor"
+                                        role="button" aria-expanded="false">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="desc collapse show" id="collapseItemBoxColor">
+                                <div class="filter-item-content">
+                                    <form action="">
+                                        @foreach ($variation->variationValues as $value)
+                                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="variation" value="{{ $value->value }}"
+                                                        onchange="filter()"
+                                                        {{ request()->has('variation') && in_array($value->value, explode('-', request()->variation)) ? 'checked' : '' }}>
                                                     <a href="#"> {{ $value->value }} </a>
                                                     <span class="checkmark"></span>
                                                 </div>
+                                                <div>
+                                                    <span class="fw-bold font-14">(27)</span>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="col-lg-9">
+
+                    <div class="category-sort mb-3">
+                        <div class="content-box">
+                            <div class="container-fluid">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="box_filter d-lg-block d-none">
+                                        <ul class="list-inline text-start mb-0 d-none" onchange="filter()">
+                                            <li class="list-inline-item title-font ms-0">مرتب سازی بر اساس :</li>
+                                            <li class="list-inline-item"><a href="#">گران ترین</a></li>
+                                            <li class="list-inline-item"><a class="active_custom" href="#">ارزان
+                                                    ترین</a>
                                             </li>
-                                        @endforeach
-                                    </ul>
+                                            <li class="list-inline-item"><a href="#">پروفروش ترین</a></li>
+                                            <li class="list-inline-item"><a href="#">داغ ترین</a></li>
+                                            <li class="list-inline-item"><a href="#">محبوب ترین</a></li>
+                                        </ul>
+                                        <select class="form-control form-select" id="sort-by" onchange="filter()">
+                                            <option value="default"> مرتب سازی </option>
+                                            <option value="max"
+                                                {{ request()->has('sortBy') && request()->sortBy == 'max' ? 'selected' : '' }}>
+                                                بیشترین قیمت </option>
+                                            <option value="min"
+                                                {{ request()->has('sortBy') && request()->sortBy == 'min' ? 'selected' : '' }}>
+                                                کم
+                                                ترین قیمت </option>
+                                            <option value="latest"
+                                                {{ request()->has('sortBy') && request()->sortBy == 'latest' ? 'selected' : '' }}>
+                                                جدیدترین </option>
+                                            <option value="oldest"
+                                                {{ request()->has('sortBy') && request()->sortBy == 'oldest' ? 'selected' : '' }}>
+                                                قدیمی ترین </option>
+                                        </select>
+                                    </div>
+                                    <div class="box_filter_counter fs-6"><i class="bi bi-card-list me-2"></i> 123 کالا
+                                    </div>
+                                </div>
+                                <div class="d-lg-none d-block">
+                                    <form action="">
+                                        <h5 class="mb-3">مرتب سازی بر اساس</h5>
+                                        <select name="" id="" class="form-select">
+                                            <option value="">گران ترین</option>
+                                            <option value="">ارزان ترین</option>
+                                            <option value="">پرفروش ترین</option>
+                                            <option value="">داغ ترین</option>
+                                            <option value="">محبوب ترین</option>
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
-                            <hr>
-                        @endforeach
+                        </div>
+                    </div>
 
-                        <div class="sidebar-widget mt-30">
-                            <h4 class="pro-sidebar-title">{{ $variation->name }} </h4>
-                            <div class="sidebar-widget-list mt-20">
-                                <ul>
-                                    @foreach ($variation->variationValues as $value)
-                                        <li>
-                                            <div class="sidebar-widget-list-left">
-                                                <input type="checkbox" class="variation" value="{{ $value->value }}"
-                                                    onchange="filter()"
-                                                    {{ request()->has('variation') && in_array($value->value, explode('-', request()->variation)) ? 'checked' : '' }}>
-                                                <a href="#"> {{ $value->value }} </a>
-                                                <span class="checkmark"></span>
+                    <div class="category-pro">
+                        <div class="row g-3">
+                            @foreach ($products as $product)
+                                <div class="col-md-6 col-xl-4 col-xxl-3">
+                                    <div class="product-box">
+                                        <div class="product-box-image">
+
+                                            <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}"
+                                                loading="lazy" alt="" class="img-fluid one-image">
+
+
+
+                                            <div class="product-box-price-discount">
+                                                <span class="d-block badge main-color-two-bg text-white font-14">25%</span>
                                             </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- content -->
-                <div class="col-lg-9 order-1 order-sm-1 order-md-2">
-                    <!-- shop-top-bar -->
-                    <div class="shop-top-bar" style="direction: rtl;">
-
-                        <div class="select-shoing-wrap">
-                            <div class="shop-select">
-                                <select id="sort-by" onchange="filter()">
-                                    <option value="default"> مرتب سازی </option>
-                                    <option value="max"
-                                        {{ request()->has('sortBy') && request()->sortBy == 'max' ? 'selected' : '' }}>
-                                        بیشترین قیمت </option>
-                                    <option value="min"
-                                        {{ request()->has('sortBy') && request()->sortBy == 'min' ? 'selected' : '' }}> کم
-                                        ترین قیمت </option>
-                                    <option value="latest"
-                                        {{ request()->has('sortBy') && request()->sortBy == 'latest' ? 'selected' : '' }}>
-                                        جدیدترین </option>
-                                    <option value="oldest"
-                                        {{ request()->has('sortBy') && request()->sortBy == 'oldest' ? 'selected' : '' }}>
-                                        قدیمی ترین </option>
-                                </select>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="shop-bottom-area mt-35">
-                        <div class="tab-content jump">
-
-                            <div class="row ht-products" style="direction: rtl;">
-                                @foreach ($products as $product)
-                                    <div class="col-xl-4 col-md-6 col-lg-6 col-sm-6">
-                                        <!--Product Start-->
-                                        <div class="ht-product ht-product-action-on-hover ht-product-category-right-bottom mb-30">
-                                            <div class="ht-product-inner">
-                                                <div class="ht-product-image-wrap">
-                                                    <a href="{{ route('home.products.show' , ['product' => $product->slug]) }}" class="ht-product-image">
-                                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}" alt="{{ $product->name }}" />
-                                                    </a>
-                                                    <div class="ht-product-action">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="#" data-toggle="modal" data-target="#productModal-{{$product->id}}"><i
-                                                                        class="sli sli-magnifier"></i><span
-                                                                        class="ht-product-action-tooltip"> مشاهده سریع
-                                                                    </span></a>
-                                                            </li>
-                                                            <li>
-                                                                @auth
-                                                                    @if ($product->checkUserWishlist(auth()->id()))
-                                                                        <a href="{{ route('home.wishlist.remove' , ['product' => $product->id]) }}"><i class="fas fa-heart" style="color:red"></i><span
-                                                                            class="ht-product-action-tooltip">
-                                                                            به لیست علاقه مندی ها اضافه شده است
-                                                                            </span>
-                                                                        </a>
-                                                                    @else
-                                                                        <a href="{{ route('home.wishlist.add' , ['product' => $product->id]) }}"><i class="sli sli-heart"></i><span
-                                                                            class="ht-product-action-tooltip">
-                                                                            افزودن به علاقه مندی ها
-                                                                            </span>
-                                                                        </a>
-                                                                    @endif
-
-                                                                @else
-                                                                    <a href="{{ route('home.wishlist.add' , ['product' => $product->id]) }}"><i class="sli sli-heart"></i><span
-                                                                        class="ht-product-action-tooltip">
-                                                                        افزودن به علاقه مندی ها
-                                                                        </span>
-                                                                    </a>
-                                                                @endauth
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"><i class="sli sli-refresh"></i><span
-                                                                        class="ht-product-action-tooltip"> مقایسه
-                                                                    </span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="ht-product-content">
-                                                    <div class="ht-product-content-inner">
-                                                        <div class="ht-product-categories">
-                                                            <a href="#">{{ $product->category->name }}</a>
-                                                        </div>
-                                                        <h4 class="ht-product-title text-right">
-                                                            <a href="#"> {{ $product->name }} </a>
-                                                        </h4>
-                                                        <div class="ht-product-price">
-                                                            @if($product->quantity_check)
-                                                                @if($product->sale_check)
-                                                                    <span class="new">
-                                                                        {{ number_format($product->sale_check->sale_price) }}
-                                                                        تومان
-                                                                    </span>
-                                                                    <span class="old">
-                                                                        {{ number_format($product->sale_check->price) }}
-                                                                        تومان
-                                                                    </span>
-                                                                @else
-                                                                    <span class="new">
-                                                                        {{ number_format($product->price_check->price) }}
-                                                                        تومان
-                                                                    </span>
-                                                                @endif
-                                                            @else
-                                                                <div class="not-in-stock">
-                                                                    <p class="text-white">ناموجود</p>
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                        <div class="ht-product-ratting-wrap mt-4">
-                                                            <div data-rating-stars="5"
-                                                                data-rating-readonly="true"
-                                                                data-rating-value="{{ ceil($product->rates->avg('rate')) }}">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
+                                            <span class="product-box-image-overlay"></span>
                                         </div>
-                                        <!--Product End-->
-                                    </div>
-                                @endforeach
-                            </div>
-
-                        </div>
-
-                        <div id="pagination" class="pro-pagination-style text-center mt-30">
-                            {{ $products->withQueryString()->links() }}
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <form id="filter-form">
-        @foreach ($attributes as $attribute)
-            <input id="filter-attribute-{{ $attribute->id }}" type="hidden" name="attribute[{{ $attribute->id }}]">
-        @endforeach
-        <input id="filter-variation" type="hidden" name="variation">
-        <input id="filter-sort-by" type="hidden" name="sortBy">
-        <input id="filter-search" type="hidden" name="search">
-    </form>
-
-    <!-- Modal -->
-    @foreach ($products as $product)
-    <div class="modal fade" id="productModal-{{$product->id}}" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">x</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-7 col-sm-12 col-xs-12" style="direction: rtl;">
-                            <div class="product-details-content quickview-content">
-                                <h2 class="text-right mb-4">{{ $product->name }}</h2>
-                                <div class="product-details-price variation-price">
-                                    @if($product->quantity_check)
-                                        @if($product->sale_check)
-                                            <span class="new">
-                                                {{ number_format($product->sale_check->sale_price) }}
-                                                تومان
-                                            </span>
-                                            <span class="old">
-                                                {{ number_format($product->sale_check->price) }}
-                                                تومان
-                                            </span>
-                                        @else
-                                            <span class="new">
-                                                {{ number_format($product->price_check->price) }}
-                                                تومان
-                                            </span>
-                                        @endif
-                                    @else
-                                        <div class="not-in-stock">
-                                            <p class="text-white">ناموجود</p>
+                                        <div class="product-box-title">
+                                            <a href="{{ route('home.products.show' , ['product' => $product->slug]) }}">
+                                                <h5 class="text-overflow-2">{{ $product->name }}
+                                                </h5>
+                                            </a>
                                         </div>
-                                    @endif
-                                </div>
-                                <div class="pro-details-rating-wrap">
-
-                                    <div data-rating-stars="5"
-                                        data-rating-readonly="true"
-                                        data-rating-value="{{ ceil($product->rates->avg('rate')) }}">
-                                    </div>
-                                    <span class="mx-3">|</span>
-                                    <span>{{ $product->approvedComments()->count() }} دیدگاه</span>
-                                </div>
-                                <p class="text-right">
-                                    {{ $product->description }}
-                                </p>
-                                <div class="pro-details-list text-right">
-                                    <ul class="text-right">
-                                        @foreach ($product->attributes()->with('attribute')->get() as $attribute)
-                                        <li> -
-                                            {{ $attribute->attribute->name }}
-                                            :
-                                            {{ $attribute->value }}
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-
-                                @if($product->quantity_check)
-
-                                    @php
-                                        if($product->sale_check)
-                                        {
-                                            $variationProductSelected = $product->sale_check;
-                                        }else{
-                                            $variationProductSelected = $product->price_check;
-                                        }
-                                    @endphp
-                                    <div class="pro-details-size-color text-right">
-                                        <div class="pro-details-size w-50">
-                                            <span>{{ App\Models\Attribute::find($product->variations->first()->attribute_id)->name }}</span>
-                                            <select class="form-control variation-select">
-                                                @foreach ($product->variations()->where('quantity' , '>' , 0)->get() as $variation)
-                                                    <option
-                                                    value="{{ json_encode($variation->only(['id' , 'quantity','is_sale' , 'sale_price' , 'price'])) }}"
-                                                    {{ $variationProductSelected->id == $variation->id ? 'selected' : '' }}
-                                                    >{{ $variation->value }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                    <div class="pro-details-quality">
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box quantity-input" type="text" name="qtybutton" value="1" data-max="5" />
-                                        </div>
-                                        <div class="pro-details-cart">
-                                            <a href="#">افزودن به سبد خرید</a>
-                                        </div>
-                                        <div class="pro-details-wishlist">
-                                            @auth
-                                                @if ($product->checkUserWishlist(auth()->id()))
-                                                    <a href="{{ route('home.wishlist.remove' , ['product' => $product->id]) }}"><i class="fas fa-heart" style="color:red"></i>
-                                                    </a>
+                                        <div
+                                            class="product-box-suggest-price d-flex align-items-center justify-content-between">
+                                            @if ($product->quantity_check)
+                                                @if ($product->sale_check)
+                                                    <span class="new">
+                                                        {{ number_format($product->sale_check->sale_price) }}
+                                                        تومان
+                                                    </span>
+                                                    <span class="old">
+                                                        {{ number_format($product->sale_check->price) }}
+                                                        تومان
+                                                    </span>
                                                 @else
-                                                    <a href="{{ route('home.wishlist.add' , ['product' => $product->id]) }}"><i class="sli sli-heart"></i>
-                                                    </a>
+                                                    <ins class="font-25">
+                                                        {{ number_format($product->price_check->price) }}
+                                                        تومان
+                                                        {{-- <ins class="font-25">2,500,000 <span>تومان</span></ins> --}}
+
+                                                    </ins>
                                                 @endif
-
                                             @else
-                                                <a href="{{ route('home.wishlist.add' , ['product' => $product->id]) }}"><i class="sli sli-heart"></i>
-                                                </a>
-                                            @endauth
+                                                <div class="not-in-stock">
+                                                    <p class="text-white">ناموجود</p>
+                                                </div>
+                                            @endif
                                         </div>
-                                        <div class="pro-details-compare">
-                                            <a title="Add To Compare" href="#"><i class="sli sli-refresh"></i></a>
+                                        <div class="product-box-hover-action">
+                                            <nav class="navbar navbar-expand justify-content-center">
+                                                <ul class="navbar-nav align-items-center">
+                                                    <li class="nav-item">
+                                                        <a href="{{ route('home.products.show' , ['product' => $product->slug]) }}"
+                                                            class="nav-item product-box-hover-item me-3">مشاهده محصول</a>
+                                                    </li>
+                                                    {{-- <li class="nav-item">
+                                                        <a href=""
+                                                            class="nav-item product-box-hover-item product-box-hover-item-btn me-1"
+                                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            data-bs-title="افزودن به سبد خرید"><i
+                                                                class="bi bi-basket"></i></a>
+                                                    </li> --}}
+                                                    {{-- <li class="nav-item">
+                                                        <a href=""
+                                                            class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            data-bs-title="افزودن به علاقه ها"><i
+                                                                class="bi bi-heart"></i></a>
+                                                    </li> --}}
+                                                </ul>
+                                            </nav>
                                         </div>
                                     </div>
-                                @else
-                                    <div class="not-in-stock">
-                                        <p class="text-white">ناموجود</p>
-                                    </div>
-                                @endif
-
-
-                                <div class="pro-details-meta">
-                                    <span>دسته بندی :</span>
-                                    <ul>
-                                        <li><a href="{{ route('home.categories.show' , ['category' => $product->category->slug ]) }}">{{ $product->category->parent->name }}، {{ $product->category->name }}</a></li>
-                                    </ul>
                                 </div>
-                                <div class="pro-details-meta">
-                                    <span>تگ ها :</span>
-                                    <ul>
-                                        @foreach ($product->tags as $tag)
-                                        <li><a href="#">{{ $tag->name }}{{ $loop->last ? '' : '،' }}</a></li>
-                                        @endforeach
-                                    </ul>
+                            @endforeach
+
+                            <div class="col-12">
+                                <div class="content-box">
+                                    <div class="container-fluid">
+                                        {{ $products->withQueryString()->links() }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="content-box">
+                        <div class="container-fluid">
+                            <div class="product-desc-content">
+                                <input class="read-more-state" id="readMore3" type="checkbox">
+                                <!-- والد بیشتر ، کمتر ، تمام متن توضیحات باید داخل این تگ قرار بگیرند -->
+                                <div class="read-more-wrap">
+                                    <h6 class="font-22 mb-2 title-font title-line-bottom">{{ $category->name }}</h6>
 
-                        <div class="col-md-5 col-sm-12 col-xs-12">
-                            <div class="tab-content quickview-big-img">
-                                <div id="pro-primary-{{$product->id}}" class="tab-pane fade show active">
-                                    <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}" alt="" />
-                                </div>
-                                @foreach ($product->images as $image)
-                                    <div id="pro-{{$image->id}}" class="tab-pane fade">
-                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}" alt="" />
-                                    </div>
-                                @endforeach
-                            </div>
-                            <!-- Thumbnail Large Image End -->
-                            <!-- Thumbnail Image End -->
-                            <div class="quickview-wrap mt-15">
-                                <div class="quickview-slide-active owl-carousel nav nav-style-2" role="tablist">
-                                    <a class="active" data-toggle="tab" href="#pro-primary-{{$product->id}}">
-                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $product->primary_image) }}" alt="" />
-                                    </a>
-                                    @foreach ($product->images as $image)
-                                    <a data-toggle="tab" href="#pro-{{$image->id}}">
-                                        <img src="{{ asset(env('PRODUCT_IMAGES_UPLOAD_PATH') . $image->image) }}" alt="" />
-                                    </a>
-                                    @endforeach
+                                    {{ $category->description ?? '-' }}
+
+
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @endforeach
-    <!-- Modal end -->
 
+    <!-- end main content -->
 @endsection

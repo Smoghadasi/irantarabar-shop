@@ -12,13 +12,26 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('id');
-            $table->bigInteger('amount');
+            $table->id();
 
-            $table->unsignedInteger('user_id');
+            $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->tinyInteger('status');
+            $table->foreignId('address_id');
+            $table->foreign('address_id')->references('id')->on('user_addresses')->onDelete('cascade');
+
+            $table->foreignId('coupon_id')->nullable();
+            $table->foreign('coupon_id')->references('id')->on('coupons')->onDelete('cascade');
+
+            $table->tinyInteger('status')->default(0);
+            $table->unsignedInteger('total_amount');
+            $table->unsignedInteger('delivery_amount')->default(0);
+            $table->unsignedInteger('coupon_amount')->default(0);
+            $table->unsignedInteger('paying_amount');
+            $table->enum('payment_type' , ['pos' , 'cash' , 'shabaNumber' , 'cardToCard' , 'online']);
+            $table->tinyInteger('payment_status')->default(0);
+            $table->text('description')->nullable();
+
             $table->timestamps();
         });
     }

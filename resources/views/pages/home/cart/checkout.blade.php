@@ -84,7 +84,6 @@
                                     </div>
                                 </div> --}}
                             </div>
-<<<<<<< HEAD
                             <!-- modal discount -->
 
                             <div class="discount-modal">
@@ -118,8 +117,6 @@
                             </div>
 
                             <!--end modal discount-->
-=======
->>>>>>> 15e21d01f157215620e20ba7adb9439a4f7cbdee
 
                             <div class="alert bg-white shadow-box">
                                 <h5 class="font-18 border-bottom pb-3">

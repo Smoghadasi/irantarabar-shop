@@ -29,6 +29,9 @@ class ProfileAddressController extends Controller
         $userAddress = new UserAddress();
         $userAddress->user_id = Auth::id();
         $userAddress->city_id = $request->city_id;
+        $userAddress->cellphone = $request->cellphone;
+        $userAddress->title = $request->title;
+        $userAddress->postal_code = $request->postal_code;
         $userAddress->address = $request->address;
         $userAddress->province_id = $request->province_id;
         $userAddress->save();

@@ -85,54 +85,6 @@
 
 
     <!-- end main slider -->
-    <!-- start categories -->
-
-    <div class="categories free-swiper py-30">
-        <div class="container-fluid position-relative">
-
-            <div class="section-title">
-                <div class="row gy-3 align-items-center">
-                    <div class="col-sm-8">
-                        <div class="section-title-title">
-                            <h2 class="title-font h1">دسته بندی <span class="main-color-two-color">محصولات</span>
-                            </h2>
-                            <div class="Dottedsquare"></div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="section-title-link text-sm-end text-start">
-                            <a class="btn main-color-two-bg border-0" href=""> مشاهده همه</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="swiper cat-slider">
-                <div class="swiper-wrapper">
-
-                    @foreach ($categories as $category)
-                        <div class="swiper-slide">
-                            <div class="slider-category-item">
-                                <div class="slider-category-item-title">
-                                    <h6>{{ $category->name }}</h6>
-                                    <span>{{ $category->products_count }} محصول</span>
-                                </div>
-                                <div class="slider-category-item-image">
-                                    <img src="{{ asset('assets/img/category/camera.jpg') }}" alt="{{ $category->name }}">
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
-
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- end categories -->
 
 
     <!-- start amazing -->

@@ -363,7 +363,7 @@
                             <a href="{{ route('login') }}" class="top-header-link-login rounded-pill me-2"><i
                                     class="bi bi-person-lock d-sm-none fs-2 d-sm-block"></i> <span
                                     class="d-sm-block d-none">ورود</span></a>
-                            <a href=""
+                            <a href="{{ route('register') }}"
                                 class="top-header-link-register border-0 btn main-color-one-bg rounded-pill"><i
                                     class="bi bi-person-add fs-2 d-sm-none d-sm-block"></i> <span
                                     class="d-sm-block d-none">عضویت</span> </a>
@@ -394,7 +394,7 @@
                                     @foreach (App\helper\ShowModels::categoryHeaderMegaMenu() as $category)
                                         <li class="">
                                             <a
-                                                href="{{ route('home.categories.show', ['category' => $category->slug]) }}">
+                                                href="#">
                                                 <i class="bi bi-phone"></i> {{ $category->name }}
                                             </a>
 

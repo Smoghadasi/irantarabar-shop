@@ -72,7 +72,28 @@
                             <form method="post" action="{{ route('home.panel.address.store') }}">
                                 @csrf
                                 <div class="row g-4">
-                                    <div class="col-12">
+                                    <div class="col-6">
+                                        <div class="comment-item mb-3">
+                                            <input name="title" type="text" class="form-control" id="floatingInputStreet1"
+                                                placeholder="نام محل ...">
+                                            <label for="floatingInputStreet1" class="form-label label-float fw-bold">نام</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="comment-item mb-3">
+                                            <input name="cellphone" type="text" class="form-control" id="floatingInputStreet1"
+                                                placeholder="شماره موبایل خود را وارد کنید ...">
+                                            <label for="floatingInputStreet1" class="form-label label-float fw-bold">شماره موبایل</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="comment-item mb-3">
+                                            <input name="postal_code" type="text" class="form-control" id="floatingInputStreet1"
+                                                placeholder="کد پستی خود را وارد کنید ...">
+                                            <label for="floatingInputStreet1" class="form-label label-float fw-bold">کد پستی</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
                                         <div class="comment-item mb-3">
                                             <input name="address" type="text" class="form-control" id="floatingInputStreet1"
                                                 placeholder="آدرس خود را وارد کنید ...">
