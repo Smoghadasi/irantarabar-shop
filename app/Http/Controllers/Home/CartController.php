@@ -95,12 +95,6 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function usersProfileIndex()
-    {
-        $orders = Order::where('user_id', auth()->id())->get();
-        return $orders;
-        return view('pages.home.profile.users_profile', compact('orders'));
-    }
 
     public function update(Request $request)
     {

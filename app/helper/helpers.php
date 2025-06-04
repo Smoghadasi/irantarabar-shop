@@ -6,6 +6,10 @@ use App\Models\Order;
 use App\Models\Coupon;
 use App\Models\Province;
 
+
+
+const MERCHANT_ID = "3d859c75-6bdf-433a-a50e-82d614b7a01a";
+
 if (!function_exists('generateFileName')) {
     function generateFileName($name)
     {

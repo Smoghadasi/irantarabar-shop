@@ -60,7 +60,7 @@
             <i class="bi bi-chevron-up font-20"></i>
         </div>
         <div class="item">
-            <a href="index.html">
+            <a href="/">
                 <i class="bi bi-house font-20"></i>
             </a>
         </div>
@@ -75,7 +75,7 @@
             </a>
         </div>
         <div class="item">
-            <a href="index.html">
+            <a href="{{ route('wishlist.users_profile.index') }}">
                 <i class="bi bi-person"></i>
             </a>
         </div>

@@ -48,7 +48,8 @@ class WishListController extends Controller
 
     public function usersProfileIndex()
     {
-        $wishlist = Wishlist::where('user_id', auth()->id())->get();
-        return view('home.users_profile.wishlist', compact('wishlist'));
+        $wishlists = Wishlist::where('user_id', auth()->id())->get();
+        // return $wishlists;
+        return view('pages.home.profile.wishlist.index', compact('wishlists'));
     }
 }

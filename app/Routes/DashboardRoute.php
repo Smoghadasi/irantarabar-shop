@@ -25,7 +25,7 @@ use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
-use App\Interfaces\RouteInterface;
+use App\interfaces\RouteInterface;
 use Illuminate\Support\Facades\Route;
 
 class DashboardRoute implements RouteInterface

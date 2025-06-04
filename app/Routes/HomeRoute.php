@@ -14,6 +14,7 @@ namespace App\Routes;
 
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CategoryController;
+use App\Http\Controllers\Home\ContactUsController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductController;
 use App\Http\Controllers\Home\WishListController;
@@ -44,5 +45,8 @@ class HomeRoute implements RouteInterface
 
         Route::get('/add-to-wishlist/{product}', [WishListController::class, 'add'])->name('home.wishlist.add');
         Route::get('/remove-from-wishlist/{product}', [WishlistController::class, 'remove'])->name('home.wishlist.remove');
+
+
+        Route::get('/contactUs', [ContactUsController::class, 'index'])->name('home.contactUs');
     }
 }

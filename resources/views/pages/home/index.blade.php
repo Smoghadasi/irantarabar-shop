@@ -19,7 +19,9 @@
                                                         alt="">
                                                 </div>
                                                 <div class="product-box-suggest-title">
-                                                    <h6 class="text-overflow-1">{{ $product->name }}</h6>
+                                                    <a href="{{ route('home.products.show', ['product' => $product->slug]) }}">
+                                                        <h6 class="text-overflow-1">{{ $product->name }}</h6>
+                                                    </a>
                                                 </div>
                                                 <div class="product-box-suggest-price">
                                                     @if ($product->quantity_check)
@@ -131,7 +133,7 @@
                                         <span class="product-box-image-overlay"></span>
                                     </div>
                                     <div class="product-box-title">
-                                        <a href="">
+                                        <a href="#">
                                             <h5 class="text-overflow-2">{{ $product->name }}
                                             </h5>
                                         </a>
@@ -173,10 +175,32 @@
                                                     <a href=""
                                                         class="nav-item product-box-hover-item product-box-hover-item-btn me-1"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="افزودن به سبد خرید"><i
-                                                            class="bi bi-basket"></i></a>
+                                                        data-bs-title="افزودن به سبد خرید"><i class="bi bi-basket"></i></a>
                                                 </li>
                                                 <li class="nav-item">
+                                                    @auth
+                                                        @if ($product->checkUserWishlist(auth()->id()))
+                                                            <a href="{{ route('home.wishlist.remove', ['product' => $product->id]) }}"
+                                                                class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-title="حذف علاقه مندی"><i
+                                                                    class="bi bi-heart-fill text-danger"></i></a>
+                                                        @else
+                                                            <a href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"
+                                                                class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-title="افزودن به علاقه ها"><i
+                                                                    class="bi bi-heart"></i></a>
+                                                        @endif
+                                                    @else
+                                                        <a href="{{ route('home.wishlist.add', ['product' => $product->id]) }}"
+                                                            class="nav-item product-box-hover-item product-box-hover-item-btn"
+                                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            data-bs-title="افزودن به علاقه ها"><i class="bi bi-heart"></i></a>
+
+                                                    @endauth
+                                                </li>
+                                                {{-- <li class="nav-item">
                                                     @auth
                                                         @if ($product->checkUserWishlist(auth()->id()))
                                                             <a href="{{ route('home.wishlist.remove', ['product' => $product->id]) }}"
@@ -201,7 +225,7 @@
                                                         </a>
                                                     @endauth
 
-                                                </li>
+                                                </li> --}}
                                             </ul>
                                         </nav>
 

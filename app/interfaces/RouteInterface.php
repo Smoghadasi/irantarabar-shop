@@ -10,7 +10,7 @@
  * @link     https://offun.ir
  */
 
-namespace App\Interfaces;
+namespace App\interfaces;
 
 /**
  * Initialize route interface

@@ -16,7 +16,7 @@ class CategoryController extends Controller
         $variation = $category->attributes()->where('is_variation', 1)->with('variationValues')->first();
 
         $products = $category->products()->filter()->search()->paginate(9);
-        // dd($products);
+        dd($products);
 
         return view('pages.home.categories.show', compact('category', 'attributes', 'variation', 'products'));
     }
