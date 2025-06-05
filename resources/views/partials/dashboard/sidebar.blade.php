@@ -98,6 +98,11 @@
                         <div data-i18n="Basic Inputs">تگ ها</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href="{{ route('admin.comments.index') }}" class="menu-link">
+                        <div data-i18n="Basic Inputs">کامنت ها</div>
+                    </a>
+                </li>
 
             </ul>
         </li>

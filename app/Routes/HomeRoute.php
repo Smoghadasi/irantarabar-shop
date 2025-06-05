@@ -14,6 +14,7 @@ namespace App\Routes;
 
 use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\CategoryController;
+use App\Http\Controllers\Home\CommentController;
 use App\Http\Controllers\Home\ContactUsController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\ProductController;
@@ -48,5 +49,7 @@ class HomeRoute implements RouteInterface
 
 
         Route::get('/contactUs', [ContactUsController::class, 'index'])->name('home.contactUs');
+        Route::post('/comments/{product}', [CommentController::class, 'store'])->name('home.comments.store');
+
     }
 }

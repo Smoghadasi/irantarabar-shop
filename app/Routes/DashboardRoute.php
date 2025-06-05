@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AttributeValueController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -84,6 +85,10 @@ class DashboardRoute implements RouteInterface
 
             // کاربران
             Route::resource('user', UserController::class);
+
+            Route::resource('comments', CommentController::class);
+
+            Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve');
 
 
             // ویژگی دسته بندی

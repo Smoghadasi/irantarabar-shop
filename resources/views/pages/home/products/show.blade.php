@@ -204,7 +204,8 @@
                                                 </div>
                                                 <div
                                                     class="product-meta-price product-price d-flex justify-content-between align-items-center">
-                                                    <div class="product-box-suggest-price d-flex align-items-center justify-content-between">
+                                                    <div
+                                                        class="product-box-suggest-price d-flex align-items-center justify-content-between">
                                                         @if ($product->quantity_check)
                                                             @if ($product->sale_check)
                                                                 <h6 class="title-font new-price">
@@ -319,6 +320,14 @@
                                     توضیحات تکمیلی
                                 </button>
                             </li>
+                            <li class="nav-item">
+                                <button aria-selected="false" class="d-flex waves-effect waves-light"
+                                    data-bs-target="#productComment-pane" data-bs-toggle="tab" id="productComment"
+                                    role="button" type="button">
+                                    نظرات <span
+                                        class="badge main-color-two-bg ms-2 lh-sm">{{ $product->approvedComments()->count() }}</span>
+                                </button>
+                            </li>
 
 
                         </ul>
@@ -377,6 +386,208 @@
                                                     </div>
 
                                                 </div>
+                                            </div>
+                                            <div class="tab-pane fade product-comment-content" id="productComment-pane">
+
+                                                <div class="comment-form">
+                                                    <h6 class="font-26 mb-2 title-font title-line-bottom">نظرت در مورد این
+                                                        محصول
+                                                        چیه؟</h6>
+                                                    <p class="font-14 text-muted mt-2">برای ثبت نظر، از طریق دکمه افزودن
+                                                        دیدگاه جدید
+                                                        نمایید. اگر این محصول را قبلا خریده باشید، نظر شما به عنوان خریدار
+                                                        ثبت خواهد
+                                                        شد.</p>
+
+                                                    <div class="row gy-4">
+                                                        <div class="col-md-4">
+                                                            <div class="product-rateing position-sticky top-0">
+                                                                <div class="row gy-2 align-items-center">
+                                                                    <div class="number">
+                                                                        <h4 class="fw-light">متوسط امتیاز ها</h4>
+                                                                        <h2>3.00</h2>
+                                                                        <div class="star">
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                            <i class="bi bi-star-fill"></i>
+                                                                            <i class="bi bi-star"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="prog-rating">
+                                                                        <div class="item w-100 mb-2">
+                                                                            <div
+                                                                                class="d-flex align-items-center flex-wrap">
+                                                                                <span class="font-14">5 ستاره</span>
+                                                                                <div class="progress flex-grow-1 mx-2"
+                                                                                    style="height: 7px;">
+                                                                                    <div aria-valuemax="100"
+                                                                                        aria-valuemin="0"
+                                                                                        aria-valuenow="25"
+                                                                                        class="progress-bar"
+                                                                                        role="progressbar"
+                                                                                        style="width: 25%"></div>
+                                                                                </div>
+                                                                                <span class="font-14">5</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item w-100 mb-2">
+                                                                            <div
+                                                                                class="d-flex align-items-center flex-wrap">
+                                                                                <span class="font-14">4 ستاره</span>
+                                                                                <div class="progress flex-grow-1 mx-2"
+                                                                                    style="height: 7px;">
+                                                                                    <div aria-valuemax="100"
+                                                                                        aria-valuemin="0"
+                                                                                        aria-valuenow="60"
+                                                                                        class="progress-bar"
+                                                                                        role="progressbar"
+                                                                                        style="width: 60%"></div>
+                                                                                </div>
+                                                                                <span class="font-14">17</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item w-100 mb-2">
+                                                                            <div
+                                                                                class="d-flex align-items-center flex-wrap">
+                                                                                <span class="font-14">3 ستاره</span>
+                                                                                <div class="progress flex-grow-1 mx-2"
+                                                                                    style="height: 7px;">
+                                                                                    <div aria-valuemax="100"
+                                                                                        aria-valuemin="0"
+                                                                                        aria-valuenow="78"
+                                                                                        class="progress-bar"
+                                                                                        role="progressbar"
+                                                                                        style="width: 78%"></div>
+                                                                                </div>
+                                                                                <span class="font-14">85</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item w-100 mb-2">
+                                                                            <div
+                                                                                class="d-flex align-items-center flex-wrap">
+                                                                                <span class="font-14">2 ستاره</span>
+                                                                                <div class="progress flex-grow-1 mx-2"
+                                                                                    style="height: 7px;">
+                                                                                    <div aria-valuemax="100"
+                                                                                        aria-valuemin="0"
+                                                                                        aria-valuenow="4"
+                                                                                        class="progress-bar"
+                                                                                        role="progressbar"
+                                                                                        style="width: 4%"></div>
+                                                                                </div>
+                                                                                <span class="font-14">3</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item w-100">
+                                                                            <div
+                                                                                class="d-flex align-items-center flex-wrap">
+                                                                                <span class="font-14">1 ستاره</span>
+                                                                                <div class="progress flex-grow-1 mx-2"
+                                                                                    style="height: 7px;">
+                                                                                    <div aria-valuemax="100"
+                                                                                        aria-valuemin="0"
+                                                                                        aria-valuenow="82"
+                                                                                        class="progress-bar"
+                                                                                        role="progressbar"
+                                                                                        style="width: 82%"></div>
+                                                                                </div>
+                                                                                <span class="font-14">652</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <form method="post"
+                                                                action="{{ route('home.comments.store', ['product' => $product->id]) }}">
+                                                                @csrf
+                                                                <div class="row">
+
+                                                                    <div class="col-12 mb-2">
+                                                                        <div class="form-floating">
+                                                                            <textarea class="form-control" id="floatingTextarea2" name="text" placeholder="Leave a comment here"
+                                                                                style="height: 150px"></textarea>
+                                                                            <label for="floatingTextarea2">متن
+                                                                                نظر!</label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-12">
+                                                                        <button type="submit"
+                                                                            class="btn main-color-two-bg px-5 btn-lg border-0">ثبت
+                                                                            نظر</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                @foreach ($product->approvedComments as $comment)
+                                                    <div class="box_users_comment mt-3 p-4">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <div class="box_message_light">
+                                                                    <svg class="bi bi-cart3" fill="currentColor"
+                                                                        height="16" viewBox="0 0 16 16" width="16"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                                                        </path>
+                                                                    </svg>
+                                                                    خریدار این محصول
+                                                                </div>
+                                                                <div class="box_shopping mt-lg-5 mt-3">
+                                                                    <span>خریداری شده از :</span>
+                                                                    <p>
+                                                                        <i class="bi bi-shop"></i>
+                                                                        <a href="#">ایران ترابر</a>
+                                                                    </p>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-lg-9 pr-5" style="margin-top:-10px">
+                                                                <div class="box_comment_header mt-4 mt-lg-0">
+                                                                    <span class="span2">توسط
+                                                                        {{ $comment->user->name == null ? 'کاربر گرمی' : $comment->user->name }}
+                                                                        در تاریخ ۳۰ شهریور ۱۳۹۷
+                                                                    </span>
+                                                                </div>
+                                                                <div class="border-bottom mt-3"></div>
+
+                                                                <div class="row mt-4">
+                                                                    <div class="col-md-12">
+                                                                        <p class="box_text_comment">
+                                                                            {{ $comment->text }} </p>
+                                                                    </div>
+                                                                </div>
+                                                                {{-- <div class="row justify-content-end">
+                                                                    <div class="col-12">
+                                                                        <div class="comments_likes">
+                                                                            <span class="mr-4 mt-1">
+                                                                                ایا این نظر برایتان مفید بود ؟
+                                                                            </span>
+                                                                            <a class="btn btn-like btn-like-like mt-1 mt-md-0 ms-2"
+                                                                                href="#"><i
+                                                                                    class="bi bi-hand-thumbs-up"></i>
+                                                                                70</a>
+                                                                            <a class="btn btn-like btn-like-dislike mt-1 mt-md-0"
+                                                                                href="#"> <i
+                                                                                    class="bi bi-hand-thumbs-down"></i>
+                                                                                7</a>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div> --}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
                                             </div>
 
 
