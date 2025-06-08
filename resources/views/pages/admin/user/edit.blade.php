@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
     <!-- Content Row -->
     <div class="row">
 
@@ -26,19 +27,45 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label for="name">شماره تلفن همراه</label>
-                        <input class="form-control" name="mobileNumber" type="text" value="{{ $user->mobileNumber }}">
+                        <input class="form-control" name="cellphone" type="text" value="{{ $user->cellphone }}">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="role">نقش کاربر</label>
-                        <select class="form-control" name="roles[]" id="role" multiple>
-                            <option disabled>لطفا انتخاب کنید</option>
+                        <select class="form-control" name="role" id="role">
+                            <option></option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}"
-                                    {{ in_array($role->id, $user->roles->pluck('id')->toArray()) ? 'selected' : '' }}>
-                                    {{ $role->name }}</option>
+                                <option value="{{ $role->name }}" {{ in_array($role->id , $user->roles->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $role->display_name }}</option>
                             @endforeach
                         </select>
                     </div>
+
+                    <div class="accordion col-md-12 mt-3" id="accordionPermission">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed text-right" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapsePermission"
+                                    aria-expanded="false" aria-controls="collapsePermission">
+                                    مجوزهای دسترسی
+                                </button>
+                            </h2>
+                            <div id="collapsePermission" class="accordion-collapse collapse"
+                                aria-labelledby="headingOne" data-bs-parent="#accordionPermission">
+                                <div class="accordion-body row">
+                                    @foreach ($permissions as $permission)
+                                        <div class="form-group form-check col-md-3">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="permission_{{ $permission->id }}" name="{{ $permission->name }}"
+                                                value="{{ $permission->name }}"
+                                                {{ in_array($permission->id, $user->permissions->pluck('id')->toArray()) ? 'checked' : '' }}>
+                                            <label class="form-check-label mr-3"
+                                                for="permission_{{ $permission->id }}">{{ $permission->display_name }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <button class="btn btn-outline-primary mt-5" type="submit">ویرایش</button>
@@ -47,4 +74,5 @@
         </div>
 
     </div>
+
 @endsection

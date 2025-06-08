@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,11 +14,28 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $roles = [
-            ['id' => 1, 'name' => 'Admin'], // رئیس
-            ['id' => 2, 'name' => 'Owner'], // فروشنده
-            ['id' => 3, 'name' => 'HUMAN'], // خریدار
+            [
+                'id' => 1,
+                'name' => 'Admin',
+                'display_name' => 'رئیس',
+                'guard_name' => 'web'
+            ],
+            [
+                'id' => 2,
+                'name' => 'Owner',
+                'display_name' => 'فروشنده',
+                'guard_name' => 'web'
+            ],
+            [
+                'id' => 3,
+                'name' => 'HUMAN',
+                'display_name' => 'خریدار',
+                'guard_name' => 'web'
+            ],
         ];
+
         Role::insert($roles);
+
         $user = User::factory()->create([
             'name' => 'صدرا',
             'lastName' => 'مقدسی',
@@ -28,6 +44,7 @@ class DatabaseSeeder extends Seeder
             'status' => 1,
             'password' => bcrypt('123123123'),
         ]);
+
         $adminRole = Role::where('name', 'Admin')->first();
         if ($adminRole) {
             $user->roles()->sync([$adminRole->id]);

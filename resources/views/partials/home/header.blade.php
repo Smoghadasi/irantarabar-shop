@@ -14,28 +14,28 @@
                                 <div class="offcanvas offcanvas-start" tabindex="-1" id="responsiveMenu"
                                     aria-labelledby="responsive menu">
                                     <div class="offcanvas-header">
-                                        <h5 class="offcanvas-title" id="offcanvasRightLabel">فروشگاه بهرخ</h5>
+                                        <h5 class="offcanvas-title" id="offcanvasRightLabel">فروشگاه ایران ترابر</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="offcanvas-body">
                                         <a href="" class="text-center d-block mb-3">
-                                            <img src="{{ asset('assets/img/logo.png') }}" alt=""
+                                            <img src="{{ asset('assets/img/iran.png') }}" alt=""
                                                 class="img-fluid" width="200">
                                         </a>
-                                        <div class="header-bottom-form mb-4 w-100">
-                                            <div class="search-form">
-                                                <form action="">
-                                                    <div class="search-filed">
-                                                        <input type="text" placeholder="جستجوی محصولات ..."
-                                                            class="form-control search-input">
-                                                        <button type="submit"
-                                                            class="btn search-btn main-color-one-bg rounded-3"><i
-                                                                class="bi bi-search"></i></button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
+                                        <!--<div class="header-bottom-form mb-4 w-100">-->
+                                        <!--    <div class="search-form">-->
+                                        <!--        <form action="">-->
+                                        <!--            <div class="search-filed">-->
+                                        <!--                <input type="text" placeholder="جستجوی محصولات ..."-->
+                                        <!--                    class="form-control search-input">-->
+                                        <!--                <button type="submit"-->
+                                        <!--                    class="btn search-btn main-color-one-bg rounded-3"><i-->
+                                        <!--                        class="bi bi-search"></i></button>-->
+                                        <!--            </div>-->
+                                        <!--        </form>-->
+                                        <!--    </div>-->
+                                        <!--</div>-->
                                         <ul class="rm-item-menu navbar-nav">
                                             @foreach (App\helper\ShowModels::categoryHeaderMegaMenu() as $category)
                                                 <li class="nav-item bg-ul-f7">
@@ -69,16 +69,18 @@
                                                 </li>
                                             @endforeach
                                             <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">صفحه اصلی</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="{{ url('/product') }}">صفحه محصول</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="{{ url('/category') }}">صفحه دسته‌بندی</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="{{ url('/cart') }}">سبد خرید</a></li>
+                                            @auth
+                                                <li class="nav-item"><a class="nav-link" href="{{ url('/admin/brand') }}">پنل ادمین</a></li>
+                                            @endauth
+                                            <!--<li class="nav-item"><a class="nav-link" href="{{ url('/category') }}">صفحه دسته‌بندی</a></li>-->
+                                            <!--<li class="nav-item"><a class="nav-link" href="{{ url('/cart') }}">سبد خرید</a></li>-->
                                             <!-- سایر صفحات... -->
                                             @guest
                                                 <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">ورود</a></li>
                                                 <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">ثبت‌نام</a></li>
                                             @endguest
                                             @auth
-                                                <li class="nav-item"><a class="nav-link" href="{{ url('/dashboard') }}">داشبورد</a></li>
+                                                <!--<li class="nav-item"><a class="nav-link" href="{{ url('/dashboard') }}">داشبورد</a></li>-->
                                             @endauth
                                     </div>
                                 </div>
@@ -92,16 +94,16 @@
                     </div>
                 </div>
                 <div class="col-lg-7 order-lg-2 order-3">
-                    <div class="search-form">
-                        <form action="">
-                            <div class="search-filed">
-                                <input type="text" placeholder="جستجوی محصولات ..."
-                                    class="form-control search-input">
-                                <button type="submit" class="btn search-btn main-color-one-bg rounded-3"><i
-                                        class="bi bi-search"></i></button>
-                            </div>
-                        </form>
-                    </div>
+                    <!--<div class="search-form">-->
+                    <!--    <form action="">-->
+                    <!--        <div class="search-filed">-->
+                    <!--            <input type="text" placeholder="جستجوی محصولات ..."-->
+                    <!--                class="form-control search-input">-->
+                    <!--            <button type="submit" class="btn search-btn main-color-one-bg rounded-3"><i-->
+                    <!--                    class="bi bi-search"></i></button>-->
+                    <!--        </div>-->
+                    <!--    </form>-->
+                    <!--</div>-->
                 </div>
                 <div class="col-lg-3 col-6 order-lg-3 order-2">
 

@@ -46,7 +46,7 @@
                     <div class="footer-col-item">
                         <nav class="navbar">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><span class="nav-link font-16 f-800">با بهرخ</span></li>
+                                <li class="nav-item"><span class="nav-link font-16 f-800">با ایران ترابر</span></li>
                                 <li class="nav-item"><a href="" class="nav-link">حریم خصوصی</a></li>
                                 <li class="nav-item"><a href="" class="nav-link">شرایط استفاده</a></li>
                                 <li class="nav-item"><a href="" class="nav-link">رویه های بازگردندان کالا</a></li>
@@ -61,7 +61,7 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item"><span class="nav-link font-16 f-800">باشگاه مشتریان</span></li>
                                 <li class="nav-item"><a href="" class="nav-link">اتاق خبر</a></li>
-                                <li class="nav-item"><a href="" class="nav-link">فروش در بهرخ</a></li>
+                                <li class="nav-item"><a href="" class="nav-link">فروش در ایران ترابر</a></li>
                                 <li class="nav-item"><a href="" class="nav-link">فرصت های شغلی</a></li>
                                 <li class="nav-item"><a href="" class="nav-link">تماس با ما</a></li>
                             </ul>
@@ -94,7 +94,7 @@
         {{-- <div class="footer-app">
             <div class="row align-items-center">
                 <div class="col-md-4">
-                    <h5 class="text-white text-sm-start text-center">دانلود اپلیکیشن بهرخ</h5>
+                    <h5 class="text-white text-sm-start text-center">دانلود اپلیکیشن ایران ترابر</h5>
                 </div>
                 <div class="col-md-8">
                     <nav class="navbar navbar-expand justify-content-sm-end">
@@ -111,7 +111,7 @@
         <div class="footer-description">
             <div class="row align-items-center gy-3">
                 <div class="col-lg-8">
-                    <h5 class="mb-3">فروشگاه اینترنتی بهرخ ، بررسی انتخاب و خرید آنلاین</h5>
+                    <h5 class="mb-3">فروشگاه اینترنتی ایران ترابر ، بررسی انتخاب و خرید آنلاین</h5>
                     <p class="text-muted font-14">یک خرید اینترنتی مطمئن، نیازمند فروشگاهی است که بتواند کالاهایی متنوع، باکیفیت و دارای قیمت مناسب را در مدت زمانی کوتاه به دست مشتریان خود برساند و ضمانت بازگشت کالا هم داشته باشد؛ ویژگی‌هایی که فروشگاه اینترنتی دیجی‌کالا سال‌هاست بر روی آن‌ها کار کرده و توانسته از این طریق مشتریان ثابت خود را داشته باشد</p>
                 </div>
                 <div class="col-lg-4">
@@ -127,7 +127,7 @@
         <div class="footer-copyright mt-3">
             <div class="row gy-3">
                 <div class="col-lg-9">
-                    <p class="text-muted font-14"> استفاده از مطالب فروشگاه اینترنتی پارس کالا فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به بهرخ می‌باشد. Copyright © 2006 - 2022 </p>
+                    <p class="text-muted font-14"> استفاده از مطالب فروشگاه اینترنتی پارس کالا فقط برای مقاصد غیرتجاری و با ذکر منبع بلامانع است. کلیه حقوق این سایت متعلق به ایران ترابر می‌باشد. Copyright © 2006 - 2022 </p>
                 </div>
                 <div class="col-lg-3">
                     <p class="text-muted font-14 text-end">Copyright © 2022 - 2023 rtl-theme.com</p>

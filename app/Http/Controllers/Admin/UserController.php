@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,8 +20,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
-        // $permissions = Permission::all();
-        return view('pages.admin.user.edit', compact('user', 'roles'));
+        $permissions = Permission::all();
+        return view('pages.admin.user.edit', compact('user', 'roles', 'permissions'));
     }
 
     public function create()
@@ -38,17 +39,19 @@ class UserController extends Controller
                 'mobileNumber' => $request->mobileNumber,
             ]);
 
-            $user->roles()->sync($request->roles);
+            $user->syncRoles($request->role);
 
+            $permissions = $request->except('_token', 'mobileNumber', 'role', 'name', '_method');
+            $user->syncPermissions($permissions);
 
             DB::commit();
         } catch (\Exception $ex) {
             DB::rollBack();
-            // alert()->error('مشکل در ویرایش نقش', $ex->getMessage())->persistent('حله');
-            return $ex;
+            alert()->error('مشکل در ویرایش نقش', $ex->getMessage())->persistent('حله');
+            return redirect()->back();
         }
 
-        // alert()->success('کاربر مورد نظر ویرایش شد', 'باتشکر');
+        alert()->success('کاربر مورد نظر ویرایش شد', 'باتشکر');
         return redirect()->route('admin.user.index');
     }
 }
