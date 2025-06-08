@@ -88,11 +88,13 @@
                         <div data-i18n="Basic Inputs">دسته بندی ها</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="{{ route('admin.product.index') }}" class="menu-link">
-                        <div data-i18n="Basic Inputs">محصول</div>
-                    </a>
-                </li>
+                @can('create-product')
+                    <li class="menu-item">
+                        <a href="{{ route('admin.product.index') }}" class="menu-link">
+                            <div data-i18n="Basic Inputs">محصول</div>
+                        </a>
+                    </li>
+                @endcan
                 <li class="menu-item">
                     <a href="{{ route('admin.tag.index') }}" class="menu-link">
                         <div data-i18n="Basic Inputs">تگ ها</div>
