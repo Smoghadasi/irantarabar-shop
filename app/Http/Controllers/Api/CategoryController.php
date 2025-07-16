@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::selete(['name', 'slug', 'icon'])
+        $categories = Category::select(['name', 'slug', 'icon'])
             ->where('is_active', 1)
             ->where('parent_id', 0)
             ->take(6)
