@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-
+// دسته بندی
 Route::get('category', [CategoryController::class, 'index']);
+
+// بنر
+Route::get('banner', [BannerController::class, 'index']);
 
