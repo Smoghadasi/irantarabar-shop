@@ -20,5 +20,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('checkingSelectDriverForDeleteLoad/{load}', [CategoryController::class, 'index']);
+Route::get('category', [CategoryController::class, 'index']);
 
