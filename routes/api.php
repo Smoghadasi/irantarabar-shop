@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CategoryController;
 use Illuminate\Http\Request;
@@ -20,9 +21,13 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// دسته بندی
+
+
+// بررسی کاربر سایت
+Route::post('check_user', [AuthController::class, 'check_user']);
+
+
 Route::get('category', [CategoryController::class, 'index']);
 
 // بنر
 Route::get('banner', [BannerController::class, 'index']);
-
