@@ -133,15 +133,21 @@ class CategoryController extends Controller
         try {
 
             DB::beginTransaction();
+
             $category->update([
                 'name' => $request->name,
                 'slug' =>  $request->slug,
                 'is_active' =>  $request->is_active,
                 'parent_id' =>  $request->parent_id,
-                'icon' => $request->icon,
                 'description' => $request->description,
-
             ]);
+
+            if ($file = $request->file('picture')) {
+                $name = time() . preg_replace('/\s+/', '', $file->getClientOriginalName());
+                $file->move('uploads', $name);
+                $category->icon = 'uploads/' . $name;
+                $category->save();
+            }
 
             $category->attributes()->detach();
             if (!empty($request->attribute_ids)) {
