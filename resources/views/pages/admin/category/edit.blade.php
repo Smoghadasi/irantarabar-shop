@@ -67,7 +67,7 @@
             </div>
             <hr>
             @include('partials.dashboard.errors')
-            <form action="{{ route('admin.category.update', ['category' => $category->id]) }}" method="POST">
+            <form action="{{ route('admin.category.update', ['category' => $category->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="row g-3">

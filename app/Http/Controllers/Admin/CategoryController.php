@@ -142,7 +142,7 @@ class CategoryController extends Controller
                 'description' => $request->description,
             ]);
 
-            if ($file = $request->file('picture')) {
+            if ($file = $request->file('icon')) {
                 $name = time() . preg_replace('/\s+/', '', $file->getClientOriginalName());
                 $file->move('uploads', $name);
                 $category->icon = 'uploads/' . $name;
