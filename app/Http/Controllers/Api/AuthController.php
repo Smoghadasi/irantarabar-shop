@@ -17,8 +17,8 @@ class AuthController extends Controller
         $user = User::where('mobileNumber', $fields['mobileNumber'])->first();
         if (!$user) {
             $user = User::create([
-                'name' => 'کاربر',
-                'lastName' => 'سایت',
+                'name' => $request->name ?? 'کاربر',
+                'lastName' => $request->name ?? 'سایت',
                 'mobileNumber' => $fields['mobileNumber'],
                 'password' => bcrypt($fields['mobileNumber'])
             ]);

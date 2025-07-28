@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,17 +19,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
+    // دریافت اطلاعات کاربر
+    Route::get('getUser', [ProfileController::class, 'getProfile']);
+
+});
 
 
 
 // بررسی کاربر سایت
 Route::post('check_user', [AuthController::class, 'check_user']);
 
-
+// دسته بندی
 Route::get('category', [CategoryController::class, 'index']);
 
 // بنر
 Route::get('banner', [BannerController::class, 'index']);
+
+// جدیدترین محصولات
+Route::get('newProducts', [HomeController::class, 'newProducts']);
