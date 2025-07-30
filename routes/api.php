@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
     // دریافت اطلاعات کاربر
     Route::get('getUser', [ProfileController::class, 'getProfile']);
-
 });
 
 
@@ -38,3 +38,10 @@ Route::get('banner', [BannerController::class, 'index']);
 
 // جدیدترین محصولات
 Route::get('newProducts', [HomeController::class, 'newProducts']);
+
+
+// جستجو دسته بندی
+Route::get('search/{category}', [ProductController::class, 'show']);
+
+// جستجو ساده
+Route::get('searchProduct', [ProductController::class, 'searchProduct']);
