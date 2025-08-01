@@ -13,12 +13,16 @@ class AuthController extends Controller
     {
         $fields = $request->validate([
             'mobileNumber' => 'required|string',
+            'name' => 'required|string',
+            'lastName' => 'required|string',
+            'driver_id' => 'required|integer',
         ]);
-        $user = User::where('mobileNumber', $fields['mobileNumber'])->first();
+        $user = User::where('mobileNumber', $fields['mobileNumber'])->where('driver_id', $fields['driver_id'])->first();
         if (!$user) {
             $user = User::create([
                 'name' => $request->name ?? 'کاربر',
-                'lastName' => $request->name ?? 'سایت',
+                'lastName' => $request->lastName ?? 'سایت',
+                'driver_id' => $request->driver_id,
                 'mobileNumber' => $fields['mobileNumber'],
                 'password' => bcrypt($fields['mobileNumber'])
             ]);
