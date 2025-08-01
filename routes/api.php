@@ -32,7 +32,8 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
     Route::post('/address', [ProfileAddressController::class, 'store']);
 
     // province cities
-    Route::get('/provinceCities', [ProfileAddressController::class, 'provinceCities']);
+    Route::get('/province', [ProfileAddressController::class, 'province']);
+    Route::get('/provinceCities/{province}', [ProfileAddressController::class, 'provinceCities']);
 
     // علاقه مندی ها
     Route::get('/add-to-wishlist/{product}', [WishListController::class, 'add']);

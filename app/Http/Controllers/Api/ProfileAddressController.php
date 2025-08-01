@@ -20,9 +20,15 @@ class ProfileAddressController extends ApiController
         return $this->successResponse($addresses, 200);
     }
 
-    public function provinceCities()
+    public function province()
     {
         $provinces = ProvinceCity::where('parent_id', 0)->get();
+        return $this->successResponse($provinces, 200);
+    }
+
+    public function provinceCities($province_id)
+    {
+        $provinces = ProvinceCity::where('parent_id', $province_id)->get();
         return $this->successResponse($provinces, 200);
     }
 
