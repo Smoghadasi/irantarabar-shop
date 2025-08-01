@@ -44,10 +44,10 @@ class BannerController extends Controller
         ]);
 
         $fileNameImage = generateFileName($request->image->getClientOriginalName());
-        $request->image->move(public_path(env('BANNER_IMAGES_UPLOAD_PATH')), $fileNameImage);
+        $request->image->move('uploads', $fileNameImage);
 
         Banner::create([
-            'image' => $fileNameImage,
+            'image' => 'uploads/' . $fileNameImage,
             'title' => $request->title,
             'text' => $request->text,
             'priority' => $request->priority,
