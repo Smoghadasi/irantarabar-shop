@@ -47,7 +47,7 @@ class BannerController extends Controller
         $request->image->move('uploads', $fileNameImage);
 
         Banner::create([
-            'image' => 'uploads/' . $fileNameImage,
+            'image' => $fileNameImage,
             'title' => $request->title,
             'text' => $request->text,
             'priority' => $request->priority,
