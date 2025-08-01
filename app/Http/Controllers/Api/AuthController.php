@@ -13,8 +13,6 @@ class AuthController extends Controller
     {
         $fields = $request->validate([
             'mobileNumber' => 'required|string',
-            'name' => 'required|string',
-            'lastName' => 'required|string',
             'driver_id' => 'required|integer',
         ]);
         $user = User::where('mobileNumber', $fields['mobileNumber'])->where('driver_id', $fields['driver_id'])->first();
