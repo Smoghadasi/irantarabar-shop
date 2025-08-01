@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
+// use App\Http\Controllers\Controller;
 use App\Models\Product;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController extends ApiController
 {
     public function newProducts()
     {
@@ -14,6 +15,7 @@ class HomeController extends Controller
             ->where('is_active', 1)
             ->take(10)
             ->get();
-        return response()->json($newProducts, 200);
+
+        $this->successResponse($newProducts, 200);
     }
 }
