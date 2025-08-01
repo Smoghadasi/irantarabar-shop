@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProfileAddressController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\WishListController;
 use Illuminate\Http\Request;
@@ -27,12 +28,15 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
     Route::get('getUser', [ProfileController::class, 'getProfile']);
 
     // آدرس کاربر
-    Route::get('/address', [CartController::class, 'address']);
+    Route::get('/address', [ProfileAddressController::class, 'index']);
+    Route::post('/address', [ProfileAddressController::class, 'store']);
 
     // علاقه مندی ها
     Route::get('/add-to-wishlist/{product}', [WishListController::class, 'add']);
     Route::get('/remove-from-wishlist/{product}', [WishlistController::class, 'remove']);
     Route::get('/wishlist', [WishListController::class, 'usersProfileIndex']);
+
+
 
 
     // بررسی کد تخفیف
