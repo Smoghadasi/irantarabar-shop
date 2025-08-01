@@ -10,7 +10,7 @@ class BannerController extends Controller
 {
     public function index()
     {
-        $banners = Banner::select(['image'])
+        $banners = Banner::select(['id', 'image'])
             ->where('is_active', 1)
             ->where('type', 'app')
             ->take(6)
