@@ -34,8 +34,5 @@ class Handler extends ExceptionHandler
         if ($e instanceof ModelNotFoundException) {
             return $this->errorResponse($e->getMessage(), 404);
         }
-        $this->reportable(function (Throwable $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        });
     }
 }
