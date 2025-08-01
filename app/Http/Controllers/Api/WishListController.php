@@ -35,7 +35,7 @@ class WishListController extends Controller
 
     public function usersProfileIndex()
     {
-        $wishlists = Wishlist::where('user_id', auth()->id())->get();
+        $wishlists = Wishlist::with('product')->where('user_id', auth()->id())->get();
         return response()->json($wishlists, 200);
     }
 }
