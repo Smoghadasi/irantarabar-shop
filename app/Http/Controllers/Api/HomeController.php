@@ -16,6 +16,6 @@ class HomeController extends ApiController
             ->take(10)
             ->get();
 
-        $this->successResponse($newProducts, 200);
+        return $this->successResponse($newProducts, 200);
     }
 }
