@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Models\ProvinceCity;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,12 @@ class ProfileAddressController extends ApiController
     {
         $addresses = UserAddress::where('user_id', auth()->id())->get();
         return $this->successResponse($addresses, 200);
+    }
+
+    public function provinceCities()
+    {
+        $provinces = ProvinceCity::where('parent_id', 0)->get();
+        return $this->successResponse($provinces, 200);
     }
 
     /**
