@@ -31,7 +31,7 @@ class OrderController extends ApiController
      */
     public function show($orderId)
     {
-        $order = Order::where('user_id', auth()->id())->whereId($orderId)->first();
+        $order = Order::where('user_id', auth()->id())->whereId($orderId)->firstOrFail();
         return $this->successResponse($order, 200);
 
     }
