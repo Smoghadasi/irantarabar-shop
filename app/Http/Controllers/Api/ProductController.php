@@ -40,8 +40,9 @@ class ProductController extends ApiController
         return $this->successResponse($products, 200);
     }
 
-    public function showDetail(Product $product)
+    public function showDetail($productId)
     {
+        $product = Product::with('attributes', 'variations', 'images')->whereId($productId)->firstOrFail();
         return $this->successResponse($product, 200);
     }
 }
