@@ -56,6 +56,7 @@ class ProductController extends Controller
             'brand_id' => 'required',
             'is_active' => 'required',
             'tag_ids' => 'required',
+            'fleet_ids' => 'required',
             'description' => 'required',
             'primary_image' => 'required|mimes:jpg,jpeg,png,svg',
             'images' => 'required',
