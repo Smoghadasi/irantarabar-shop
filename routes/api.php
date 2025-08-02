@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProfileAddressController;
 use App\Http\Controllers\Api\ProfileController;
@@ -29,6 +30,10 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
 
     // آدرس کاربر
     Route::apiResource('address', ProfileAddressController::class);
+
+    // سفارش ها
+    Route::get('/order', [OrderController::class, 'index']);
+    Route::get('/order/{orderId}', [OrderController::class, 'show']);
 
     // province cities
     Route::get('/province', [ProfileAddressController::class, 'province']);
