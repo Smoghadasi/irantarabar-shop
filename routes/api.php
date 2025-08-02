@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\FleetController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
@@ -27,6 +28,10 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
     // دریافت اطلاعات کاربر
     Route::get('getUser', [ProfileController::class, 'getProfile']);
+
+    // ناوگان
+    Route::get('fleet', [FleetController::class, 'index']);
+
 
     // آدرس کاربر
     Route::apiResource('address', ProfileAddressController::class);
@@ -55,6 +60,8 @@ Route::post('check_user', [AuthController::class, 'check_user']);
 
 // دسته بندی
 Route::get('category', [CategoryController::class, 'index']);
+
+
 
 // بنر
 Route::get('banner', [BannerController::class, 'index']);
