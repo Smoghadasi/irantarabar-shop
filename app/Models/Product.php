@@ -123,7 +123,7 @@ class Product extends Model
 
     public function fleets(): BelongsToMany
     {
-        return $this->belongsToMany(Fleet::class, 'product_fleet');
+        return $this->belongsToMany(Fleet::class, 'product_fleet', 'product_id', 'fleet_id');
     }
 
     public function brand(): BelongsTo
