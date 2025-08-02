@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Fleet;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProvinceCity;
@@ -34,13 +35,14 @@ class ProductController extends Controller
         $provinces = ProvinceCity::where('parent_id', 0)->get();
         $brands = Brand::all();
         $tags = Tag::all();
+        $fleets = Fleet::all();
 
 
         // $owners = User::whereHas('roles', function ($q) {
         //     $q->where('role_id', 2);
         // })->get();
 
-        return view('pages.admin.product.create', compact('categories', 'provinces', 'brands', 'tags'));
+        return view('pages.admin.product.create', compact('categories', 'provinces', 'brands', 'tags', 'fleets'));
     }
 
     /**
@@ -101,6 +103,7 @@ class ProductController extends Controller
             $productVariationController->store($request->variation_values, $category->attributes()->wherePivot('is_variation', 1)->first()->id, $product);
 
             $product->tags()->attach($request->tag_ids);
+            $product->fleets()->attach($request->fleet_ids);
 
             DB::commit();
         } catch (\Exception $ex) {

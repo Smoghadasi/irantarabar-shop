@@ -121,6 +121,11 @@ class Product extends Model
         return $this->belongsToMany(Tag::class, 'product_tag');
     }
 
+    public function fleets(): BelongsToMany
+    {
+        return $this->belongsToMany(Fleet::class, 'product_fleet');
+    }
+
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class);

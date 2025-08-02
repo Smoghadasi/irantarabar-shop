@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductController extends ApiController
 {
     public function show(Request $request, Category $category)
     {
@@ -28,6 +29,6 @@ class ProductController extends Controller
     public function searchProduct(Request $request)
     {
         $products = Product::where('name', 'like', '%' . $request->name . '%')->get();
-        return response()->json($products, 200);
+        return $this->successResponse($products, 200);
     }
 }

@@ -118,6 +118,14 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group col-md-3">
+                        <label for="fleet_ids">ناوگان</label>
+                        <select id="fleetSelect" name="fleet_ids[]" class="form-control" multiple data-live-search="true">
+                            @foreach ($fleets as $fleet)
+                                <option value="{{ $fleet->id }}">{{ $fleet->title }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     {{-- <div class="form-group col-md-3 ">
                         <label class="form-label" for="owner_id">مالک</label>
