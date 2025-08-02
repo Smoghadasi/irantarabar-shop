@@ -14,6 +14,7 @@ class AuthController extends Controller
         $fields = $request->validate([
             'mobileNumber' => 'required|string',
             'driver_id' => 'required|integer',
+            'fleet_id' => 'required|integer',
         ]);
         $user = User::where('mobileNumber', $fields['mobileNumber'])->where('driver_id', $fields['driver_id'])->first();
         if (!$user) {
@@ -21,6 +22,7 @@ class AuthController extends Controller
                 'name' => $request->name ?? 'کاربر',
                 'lastName' => $request->lastName ?? 'سایت',
                 'driver_id' => $request->driver_id,
+                'fleet_id' => $request->fleet_id,
                 'mobileNumber' => $fields['mobileNumber'],
                 'password' => bcrypt($fields['mobileNumber'])
             ]);
