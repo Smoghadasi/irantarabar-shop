@@ -27,13 +27,13 @@ class ProductController extends ApiController
     public function searchProduct(Request $request)
     {
         // return $request->fleet_ids;
-        $products = Product::when($request->fleet_ids, function ($query) use ($request) {
+        $products = Product::when(!empty($request->fleet_ids), function ($query) use ($request) {
             $query->whereHas('fleets', function ($q) use ($request) {
                 $q->whereIn('fleets.id', $request->fleet_ids);
             });
         })
             ->when($request->name, function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->name . '%');
+                $query->where('products.name', 'like', '%' . $request->name . '%');
             })
             ->get();
 
