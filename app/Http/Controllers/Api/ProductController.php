@@ -39,4 +39,9 @@ class ProductController extends ApiController
 
         return $this->successResponse($products, 200);
     }
+
+    public function showDetail(Product $product)
+    {
+        return $this->successResponse($product, 200);
+    }
 }

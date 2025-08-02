@@ -32,7 +32,6 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
     // ناوگان
     Route::get('fleet', [FleetController::class, 'index']);
 
-
     // آدرس کاربر
     Route::apiResource('address', ProfileAddressController::class);
 
@@ -68,6 +67,9 @@ Route::get('banner', [BannerController::class, 'index']);
 
 // جدیدترین محصولات
 Route::get('newProducts', [HomeController::class, 'newProducts']);
+
+// جزئیات محصول
+Route::get('product/{product}', [ProductController::class, 'showDetail']);
 
 
 // جستجو دسته بندی
