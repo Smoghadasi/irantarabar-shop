@@ -22,13 +22,21 @@ class ProductController extends ApiController
             'variation' => $variation,
             'products' => $products,
         ];
-
-        // return view('pages.home.categories.show', compact('category', 'attributes', 'variation', 'products'));
     }
 
     public function searchProduct(Request $request)
     {
-        $products = Product::where('name', 'like', '%' . $request->name . '%')->get();
+        $products = Product::when($request->fleet_ids, function ($query) use ($request) {
+            $query->whereHas('fleets', function ($q) use ($request) {
+                $q->whereIn('id', $request->fleet_ids);
+            });
+        })
+            ->when($request->name, function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->name . '%');
+            })
+            ->get();
+
+
         return $this->successResponse($products, 200);
     }
 }
