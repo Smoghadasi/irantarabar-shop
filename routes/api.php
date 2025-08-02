@@ -29,6 +29,9 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
 
     // آدرس کاربر
     Route::get('/address', [ProfileAddressController::class, 'index']);
+    Route::get('/address/{userAddress}', [ProfileAddressController::class, 'show']);
+    Route::delete('/address/{userAddress}', [ProfileAddressController::class, 'destroy']);
+    Route::put('/address/{userAddress}', [ProfileAddressController::class, 'update']);
     Route::post('/address', [ProfileAddressController::class, 'store']);
 
     // province cities
@@ -39,9 +42,6 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
     Route::get('/add-to-wishlist/{product}', [WishListController::class, 'add']);
     Route::get('/remove-from-wishlist/{product}', [WishlistController::class, 'remove']);
     Route::get('/wishlist', [WishListController::class, 'usersProfileIndex']);
-
-
-
 
     // بررسی کد تخفیف
     // Route::post('/check-coupon', [CartController::class, 'checkCoupon'])->name('home.coupons.check');

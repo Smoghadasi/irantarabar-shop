@@ -59,17 +59,18 @@ class ProfileAddressController extends ApiController
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($userAddressId)
     {
-        //
+        $userAddress = UserAddress::where('user_id', auth()->id())->whereId($userAddressId)->firstOrFail();
+        return $this->successResponse($userAddress, 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserAddress $userAddress)
+    public function update(Request $request, $userAddressId)
     {
-        $userAddress->user_id = Auth::id();
+        $userAddress = UserAddress::where('user_id', auth()->id())->whereId($userAddressId)->firstOrFail();
         $userAddress->city_id = $request->city_id;
         $userAddress->cellphone = $request->cellphone;
         $userAddress->title = $request->title;
@@ -83,8 +84,9 @@ class ProfileAddressController extends ApiController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($userAddressId)
     {
-        //
+        UserAddress::where('user_id', auth()->id())->whereId($userAddressId)->firstOrFail();
+        return $this->successResponse('', 200, 'آیتم مورد نظر حذف شد');
     }
 }
