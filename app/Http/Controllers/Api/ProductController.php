@@ -26,6 +26,7 @@ class ProductController extends ApiController
 
     public function searchProduct(Request $request)
     {
+        return $request->fleet_ids;
         $products = Product::when($request->fleet_ids, function ($query) use ($request) {
             $query->whereHas('fleets', function ($q) use ($request) {
                 $q->whereIn('id', $request->fleet_ids);
