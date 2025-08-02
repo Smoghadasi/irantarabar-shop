@@ -70,7 +70,10 @@ class ProfileAddressController extends ApiController
      */
     public function update(Request $request, $userAddressId)
     {
-        $userAddress = UserAddress::where('user_id', auth()->id())->whereId($userAddressId)->firstOrFail();
+        $userAddress = UserAddress::where('user_id', auth()->id())
+            ->whereId($userAddressId)
+            ->firstOrFail();
+
         $userAddress->city_id = $request->city_id;
         $userAddress->cellphone = $request->cellphone;
         $userAddress->title = $request->title;

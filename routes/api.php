@@ -28,11 +28,7 @@ Route::group(['middleware' => ['auth:sanctum', 'throttle:60,1']], function () {
     Route::get('getUser', [ProfileController::class, 'getProfile']);
 
     // آدرس کاربر
-    Route::get('/address', [ProfileAddressController::class, 'index']);
-    Route::get('/address/{userAddress}', [ProfileAddressController::class, 'show']);
-    Route::delete('/address/{userAddress}', [ProfileAddressController::class, 'destroy']);
-    Route::put('/address/{userAddress}', [ProfileAddressController::class, 'update']);
-    Route::post('/address', [ProfileAddressController::class, 'store']);
+    Route::apiResource('address', ProfileAddressController::class);
 
     // province cities
     Route::get('/province', [ProfileAddressController::class, 'province']);
